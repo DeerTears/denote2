@@ -2,6 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://dm2boxmeqosni" path="res://skies/tree-structure-plant-night-flower-purple-925514-pxhere.com.jpg" id="1_25hr7"]
 [ext_resource type="Texture2D" uid="uid://c5c87t0ahxst2" path="res://skies/tree-plant-bridge-flower-walkway-cityscape-1408946-pxhere.com.jpg" id="1_lef4t"]
+[ext_resource type="PackedScene" uid="uid://bwggrf7sbmkcv" path="res://PlayerCharacter/player_character_scene.tscn" id="3_modup"]
+[ext_resource type="Texture2D" uid="uid://i0734ac55x3v" path="res://environments/jungle/circle_05.png" id="4_lr4j5"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_25hr7"]
 albedo_texture = ExtResource("1_25hr7")
@@ -29,32 +31,125 @@ background_mode = 2
 sky = SubResource("Sky_xiff7")
 ambient_light_sky_contribution = 0.5
 tonemap_mode = 3
-tonemap_exposure = 1.25
-tonemap_white = 5.0
+tonemap_exposure = 1.3
+tonemap_white = 6.0
 fog_height = 11.5
 fog_height_density = 9.17
-volumetric_fog_enabled = true
 volumetric_fog_density = 0.0
+volumetric_fog_length = 1024.0
 
-[sub_resource type="FogMaterial" id="FogMaterial_0rbx2"]
-density = 1.8421
+[sub_resource type="PlaneMesh" id="PlaneMesh_0rbx2"]
+size = Vector2(160, 160)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_modup"]
+data = PackedVector3Array(80, 0, 80, -80, 0, 80, 80, 0, -80, -80, 0, 80, -80, 0, -80, 80, 0, -80)
+
+[sub_resource type="Curve" id="Curve_7uu36"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.7450331, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_lr4j5"]
+curve = SubResource("Curve_7uu36")
+
+[sub_resource type="Curve" id="Curve_lr4j5"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.12913907, 1), 0.0, 0.0, 0, 0, Vector2(0.24834436, 0.7391305), 0.0, 0.0, 0, 0, Vector2(0.36754966, 1), 0.0, 0.0, 0, 0, Vector2(0.5, 0.7478261), 0.0, 0.0, 0, 0, Vector2(0.6192053, 1), 0.0, 0.0, 0, 0, Vector2(0.74834436, 0.7217392), 0.0, 0.0, 0, 0, Vector2(0.8476821, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 9
+
+[sub_resource type="CurveTexture" id="CurveTexture_7uu36"]
+curve = SubResource("Curve_lr4j5")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_modup"]
+emission_shape_scale = Vector3(20, 20, 20)
+emission_shape = 1
+emission_sphere_radius = 1.0
+angle_min = -317.6
+angle_max = 279.5
+initial_velocity_min = 0.25
+initial_velocity_max = 1.0
+gravity = Vector3(0, 0.25, 0)
+linear_accel_min = 0.09999776
+linear_accel_max = 0.99999774
+radial_accel_min = -2.2351742e-06
+radial_accel_max = -2.2351742e-06
+tangential_accel_min = -2.0000021
+tangential_accel_max = 1.9999977
+scale_curve = SubResource("CurveTexture_7uu36")
+alpha_curve = SubResource("CurveTexture_lr4j5")
+collision_mode = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lr4j5"]
+transparency = 1
+albedo_texture = ExtResource("4_lr4j5")
+emission_enabled = true
+emission = Color(1, 1, 0, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_7uu36"]
+material = SubResource("StandardMaterial3D_lr4j5")
 
 [node name="Node3D" type="Node3D" unique_id=1685798220]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1354432061]
-transform = Transform3D(43.700413, 0, 0, 0, 33.615704, 0, 0, 0, 33.615704, 0, 16.807852, -67.23141)
+transform = Transform3D(43.700413, 0, 0, 0, 33.615704, 0, 0, 0, 33.615704, 0, 19.131945, -67.23141)
 mesh = SubResource("QuadMesh_0rbx2")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1014824457]
-transform = Transform3D(32.24221, 0, -22.691216, 0, 33.615704, 0, 29.498579, 0, 24.8017, 96.94419, 16.389837, -50.268944)
+transform = Transform3D(32.24221, 0, -22.691216, 0, 33.615704, 0, 29.498579, 0, 24.8017, 96.94419, 18.71393, -50.268944)
 mesh = SubResource("QuadMesh_lr4j5")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2073712852]
 environment = SubResource("Environment_0rbx2")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment" unique_id=334623874]
+transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, 0, 25, 0)
+light_energy = 0.1
 
-[node name="FogVolume" type="FogVolume" parent="." unique_id=1638844065]
-size = Vector3(55, 6, 55)
-shape = 0
-material = SubResource("FogMaterial_0rbx2")
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="." unique_id=2017746994]
+mesh = SubResource("PlaneMesh_0rbx2")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D3" unique_id=1708115640]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D3/StaticBody3D" unique_id=1432520822]
+shape = SubResource("ConcavePolygonShape3D_modup")
+
+[node name="PlayerCharacter" parent="." unique_id=307017552 instance=ExtResource("3_modup")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Fireflies" type="GPUParticles3D" parent="." unique_id=1349956729]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7066574, 3.688015, -1.0720634)
+amount = 100
+lifetime = 16.0
+preprocess = 3.0
+transform_align = 1
+transform_align_channel_filter = 1
+process_material = SubResource("ParticleProcessMaterial_modup")
+draw_pass_1 = SubResource("QuadMesh_7uu36")
+
+[node name="Fireflies2" type="GPUParticles3D" parent="." unique_id=1899866944]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.706657, 3.688015, -20.072063)
+amount = 100
+lifetime = 16.0
+preprocess = 3.0
+transform_align = 1
+transform_align_channel_filter = 1
+process_material = SubResource("ParticleProcessMaterial_modup")
+draw_pass_1 = SubResource("QuadMesh_7uu36")
+
+[node name="Fireflies3" type="GPUParticles3D" parent="." unique_id=260571723]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.293343, 3.688015, -17.072063)
+amount = 100
+lifetime = 16.0
+preprocess = 3.0
+transform_align = 1
+transform_align_channel_filter = 1
+process_material = SubResource("ParticleProcessMaterial_modup")
+draw_pass_1 = SubResource("QuadMesh_7uu36")
+
+[node name="Fireflies4" type="GPUParticles3D" parent="." unique_id=1454357924]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.706657, 3.688015, 18.927937)
+amount = 100
+lifetime = 16.0
+preprocess = 3.0
+transform_align = 1
+transform_align_channel_filter = 1
+process_material = SubResource("ParticleProcessMaterial_modup")
+draw_pass_1 = SubResource("QuadMesh_7uu36")
