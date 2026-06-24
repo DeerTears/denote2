@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://biln8l7u5cxkj"]
+
+[ext_resource type="Texture2D" uid="uid://dm2boxmeqosni" path="res://skies/tree-structure-plant-night-flower-purple-925514-pxhere.com.jpg" id="1_25hr7"]
+[ext_resource type="Texture2D" uid="uid://c5c87t0ahxst2" path="res://skies/tree-plant-bridge-flower-walkway-cityscape-1408946-pxhere.com.jpg" id="1_lef4t"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_25hr7"]
+albedo_texture = ExtResource("1_25hr7")
+
+[sub_resource type="QuadMesh" id="QuadMesh_0rbx2"]
+material = SubResource("StandardMaterial3D_25hr7")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_modup"]
+albedo_texture = ExtResource("1_lef4t")
+
+[sub_resource type="QuadMesh" id="QuadMesh_lr4j5"]
+material = SubResource("StandardMaterial3D_modup")
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0oxvc"]
+sky_top_color = Color(0.11964931, 0.39479238, 0.7512632, 1)
+sky_horizon_color = Color(0.6067668, 0.7584383, 0.95185643, 1)
+ground_bottom_color = Color(0.0136383865, 0.11858418, 0.007511285, 1)
+ground_horizon_color = Color(0.5894154, 0.59768975, 0.61424273, 1)
+
+[sub_resource type="Sky" id="Sky_xiff7"]
+sky_material = SubResource("ProceduralSkyMaterial_0oxvc")
+
+[sub_resource type="Environment" id="Environment_0rbx2"]
+background_mode = 2
+sky = SubResource("Sky_xiff7")
+ambient_light_sky_contribution = 0.5
+tonemap_mode = 3
+tonemap_exposure = 1.25
+tonemap_white = 5.0
+fog_height = 11.5
+fog_height_density = 9.17
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0
+
+[sub_resource type="FogMaterial" id="FogMaterial_0rbx2"]
+density = 1.8421
+
+[node name="Node3D" type="Node3D" unique_id=1685798220]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1354432061]
+transform = Transform3D(43.700413, 0, 0, 0, 33.615704, 0, 0, 0, 33.615704, 0, 16.807852, -67.23141)
+mesh = SubResource("QuadMesh_0rbx2")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1014824457]
+transform = Transform3D(32.24221, 0, -22.691216, 0, 33.615704, 0, 29.498579, 0, 24.8017, 96.94419, 16.389837, -50.268944)
+mesh = SubResource("QuadMesh_lr4j5")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2073712852]
+environment = SubResource("Environment_0rbx2")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment" unique_id=334623874]
+
+[node name="FogVolume" type="FogVolume" parent="." unique_id=1638844065]
+size = Vector3(55, 6, 55)
+shape = 0
+material = SubResource("FogMaterial_0rbx2")

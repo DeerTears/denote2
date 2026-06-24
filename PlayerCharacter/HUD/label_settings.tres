@@ -1,0 +1,10 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://d1rg1oruwidf"]
+
+[ext_resource type="FontFile" uid="uid://1tch3bm8bn07" path="res://fonts/CabinCondensed-SemiBold.ttf" id="1_arabi"]
+
+[resource]
+line_spacing = 5.0
+font = ExtResource("1_arabi")
+font_size = 12
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)

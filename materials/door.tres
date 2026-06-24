@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cctl48qk4xyxf"]
+
+[ext_resource type="Texture2D" uid="uid://mnj82ipvdr0t" path="res://classes/Doors/wood_door.png" id="1_o0jtr"]
+
+[resource]
+diffuse_mode = 2
+specular_mode = 1
+albedo_color = Color(0.6627451, 0.25490198, 0.21176471, 1)
+albedo_texture = ExtResource("1_o0jtr")
+metallic_specular = 0.0
+uv1_scale = Vector3(3, 2, 3)

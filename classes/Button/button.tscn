@@ -1,0 +1,122 @@
+[gd_scene format=3 uid="uid://dkfwk58a02jig"]
+
+[ext_resource type="Script" uid="uid://bpypmhm0yilad" path="res://classes/Button/button.gd" id="1_vqkae"]
+[ext_resource type="Material" uid="uid://behqmr4txoj0g" path="res://materials/red_shimmer_locked.tres" id="2_2ga18"]
+[ext_resource type="AudioStream" uid="uid://do6d88yjs170m" path="res://classes/Button/twingy.wav" id="2_g5yc6"]
+[ext_resource type="Material" uid="uid://dwsslggqyhaa8" path="res://materials/red_shimmer.tres" id="2_ngl0l"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tabx4"]
+metallic = 0.79
+metallic_specular = 1.0
+roughness = 0.3
+
+[sub_resource type="BoxMesh" id="BoxMesh_0rbx2"]
+material = SubResource("StandardMaterial3D_tabx4")
+size = Vector3(0.2, 0.5, 0.2)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_tabx4"]
+material = ExtResource("2_ngl0l")
+top_radius = 0.075
+bottom_radius = 0.075
+height = 0.05
+radial_segments = 32
+rings = 1
+cap_bottom = false
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_g5yc6"]
+material = ExtResource("2_2ga18")
+top_radius = 0.075
+bottom_radius = 0.075
+height = 0.05
+radial_segments = 32
+rings = 1
+cap_bottom = false
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_g5yc6"]
+height = 0.2
+radius = 0.2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2ga18"]
+size = Vector3(0.41, 0.5, 0.41)
+
+[sub_resource type="Animation" id="Animation_g5yc6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Button:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.02, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_vqkae"]
+resource_name = "pressed"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Button:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.10000001, 1),
+"transitions": PackedFloat32Array(1, 0.6155716, 1),
+"update": 0,
+"values": [Vector3(0, 1.02, 0), Vector3(0, 0.97, 0), Vector3(0, 1.02, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g5yc6"]
+_data = {
+&"RESET": SubResource("Animation_g5yc6"),
+&"pressed": SubResource("Animation_vqkae")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0rbx2"]
+size = Vector3(0.4, 1, 0.4)
+
+[node name="Button" type="Area3D" unique_id=1961219012]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_vqkae")
+
+[node name="Standee" type="MeshInstance3D" parent="." unique_id=2047270252]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.5, 0)
+mesh = SubResource("BoxMesh_0rbx2")
+
+[node name="Button" type="MeshInstance3D" parent="." unique_id=1712477497]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1.02, 0)
+mesh = SubResource("CylinderMesh_tabx4")
+
+[node name="BadButton" type="MeshInstance3D" parent="." unique_id=1713239687]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.9703784, 0)
+visible = false
+mesh = SubResource("CylinderMesh_g5yc6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=31543631]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0885574, 0)
+shape = SubResource("CylinderShape3D_g5yc6")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=1657657241]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7859756, 0)
+shape = SubResource("BoxShape3D_2ga18")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1396310532]
+libraries/ = SubResource("AnimationLibrary_g5yc6")
+
+[node name="Audio" type="AudioStreamPlayer3D" parent="." unique_id=1230417119]
+stream = ExtResource("2_g5yc6")
+volume_db = -3.0
+unit_size = 6.0
+max_distance = 30.0
+bus = &"UI"
+
+[node name="AnimatableBody3D" type="AnimatableBody3D" parent="." unique_id=320328117]
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AnimatableBody3D" unique_id=91768562]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_0rbx2")
