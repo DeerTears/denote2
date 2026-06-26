@@ -10,9 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dx43g6w153j24" path="res://classes/Doors/swing_door.tscn" id="8_5vw27"]
 [ext_resource type="PackedScene" uid="uid://7x5tvqd6jx46" path="res://classes/Pendulum/pendulum.tscn" id="9_4c57u"]
 [ext_resource type="PackedScene" uid="uid://dkfwk58a02jig" path="res://classes/Button/button.tscn" id="9_kek77"]
-[ext_resource type="SphereMesh" uid="uid://c2jms7orae2l7" path="res://materials/teleport_bubble.tres" id="11_dg77c"]
-[ext_resource type="Texture2D" uid="uid://bgxf06orj223h" path="res://classes/Teleporter/star_04.png" id="11_efxa6"]
-[ext_resource type="Script" uid="uid://bpmxtogpt3a5h" path="res://classes/Teleporter/teleporter.gd" id="11_ycdy4"]
+[ext_resource type="PackedScene" uid="uid://cyvcamcmkqgj2" path="res://classes/Teleporter/teleporter.tscn" id="11_efxa6"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_0xm2m"]
 panorama = ExtResource("1_ig7tw")
@@ -88,7 +86,7 @@ _data = {
 [sub_resource type="SphereMesh" id="SphereMesh_0rbx2"]
 material = ExtResource("2_4c57u")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kek77"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dg77c"]
 resource_local_to_scene = true
 albedo_color = Color(0.9596217, 0.23248312, 0, 1)
 emission_enabled = true
@@ -96,11 +94,11 @@ emission = Color(0.9596217, 0.23248312, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_272bh"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_4c57u"]
+[sub_resource type="BoxMesh" id="BoxMesh_ycdy4"]
 resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_272bh")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dg77c"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w48qg"]
 resource_local_to_scene = true
 albedo_color = Color(0.65033364, 0.4448521, 0.77528685, 1)
 emission_enabled = true
@@ -108,7 +106,7 @@ emission = Color(0.65033364, 0.4448521, 0.77528685, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_efxa6"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_ycdy4"]
+[sub_resource type="BoxMesh" id="BoxMesh_vivmo"]
 resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_efxa6")
 
@@ -116,102 +114,6 @@ material = SubResource("StandardMaterial3D_efxa6")
 
 [sub_resource type="BoxMesh" id="BoxMesh_0rbx2"]
 material = SubResource("StandardMaterial3D_4c57u")
-
-[sub_resource type="Animation" id="Animation_efxa6"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MeshFloat/MeshInstance3D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("MeshFloat:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_4c57u"]
-resource_name = "bounce"
-length = 6.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MeshFloat/MeshInstance3D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(2, 3.0000002, 4),
-"transitions": PackedFloat32Array(3, 0.2, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, -0.5, 0), Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("MeshFloat:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1, 2, 3.0000002, 4, 5.0000005, 6),
-"transitions": PackedFloat32Array(-2, -2, -2, -2, -2, -2, -2),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0, -0.2, 0), Vector3(0, 0, 0), Vector3(0, -0.2, 0), Vector3(0, 0.2, 0), Vector3(0, -0.2, 0), Vector3(0, 0, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_efxa6"]
-_data = {
-&"RESET": SubResource("Animation_efxa6"),
-&"bounce": SubResource("Animation_4c57u")
-}
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_0rbx2"]
-radius = 2.25
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w48qg"]
-transparency = 2
-alpha_scissor_threshold = 0.564
-alpha_antialiasing_mode = 0
-blend_mode = 1
-shading_mode = 0
-vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("11_efxa6")
-
-[sub_resource type="Curve" id="Curve_efxa6"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.04966888, 1), 0.0, 0.0, 0, 0, Vector2(0.5033113, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 4
-
-[sub_resource type="CurveTexture" id="CurveTexture_dg77c"]
-curve = SubResource("Curve_efxa6")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4c57u"]
-emission_shape_scale = Vector3(2.5, 2.5, 2.5)
-emission_shape = 2
-emission_sphere_radius = 1.0
-gravity = Vector3(0, 0, 0)
-radial_accel_min = 1.9999977
-radial_accel_max = 1.9999977
-damping_min = 1.0
-damping_max = 1.0
-scale_max = 2.0
-scale_curve = SubResource("CurveTexture_dg77c")
-
-[sub_resource type="QuadMesh" id="QuadMesh_dg77c"]
-size = Vector2(2, 2)
 
 [node name="Node3D" type="Node3D" unique_id=1723350232]
 
@@ -262,8 +164,8 @@ flash_colour = Color(0.9596217, 0.23248312, 0, 1)
 light_color = Color(0.9596217, 0.23248312, 0, 1)
 
 [node name="MeshInstance" parent="FlashingBox002" index="1" unique_id=1699869762]
-material_override = SubResource("StandardMaterial3D_kek77")
-mesh = SubResource("BoxMesh_4c57u")
+material_override = SubResource("StandardMaterial3D_dg77c")
+mesh = SubResource("BoxMesh_ycdy4")
 
 [node name="FlashingBox003" parent="." unique_id=1462933091 instance=ExtResource("2_7mycd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -9)
@@ -271,8 +173,8 @@ sound_path = "res://classes/FlashingCue/8BitCoin.wav"
 flash_colour = Color(0.810676, 0.23731133, 0.6571659, 1)
 
 [node name="MeshInstance" parent="FlashingBox003" index="1" unique_id=1699869762]
-material_override = SubResource("StandardMaterial3D_dg77c")
-mesh = SubResource("BoxMesh_ycdy4")
+material_override = SubResource("StandardMaterial3D_w48qg")
+mesh = SubResource("BoxMesh_vivmo")
 
 [node name="Boxroom Boxes" type="Node3D" parent="." unique_id=1188318675]
 
@@ -669,40 +571,8 @@ animation_name = "swing_back"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.513203, 18.057299, -82.17265)
 animation_name = "swing_back"
 
-[node name="Teleporter" type="Node3D" parent="." unique_id=2050157302]
+[node name="Teleporter" parent="." unique_id=1258569928 instance=ExtResource("11_efxa6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -78.661125, -6.5650187, -173.3181)
-script = ExtResource("11_ycdy4")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Teleporter" unique_id=1773750206]
-root_node = NodePath("../Teleporter")
-libraries/ = SubResource("AnimationLibrary_efxa6")
-
-[node name="TargetTransform" type="Marker3D" parent="Teleporter" unique_id=1241689555]
-transform = Transform3D(0.65275943, -0.15368122, 0.7418135, 0, 0.97920734, 0.20286202, -0.75756526, -0.1324201, 0.6391868, 47.912914, 2.4980402, 23.378342)
-
-[node name="Teleporter" type="Area3D" parent="Teleporter" unique_id=463969939]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Teleporter/Teleporter" unique_id=1587170660]
-shape = SubResource("SphereShape3D_0rbx2")
-
-[node name="MeshFloat" type="Node3D" parent="Teleporter/Teleporter" unique_id=1167030276]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Teleporter/Teleporter/MeshFloat" unique_id=247219893]
-mesh = ExtResource("11_dg77c")
-
-[node name="OmniLight3D" type="OmniLight3D" parent="Teleporter/Teleporter" unique_id=1109323750]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.3364077, 0)
-light_energy = 5.0
-omni_range = 10.0
-
-[node name="GPUParticles3D" type="GPUParticles3D" parent="Teleporter/Teleporter" unique_id=392668388]
-material_override = SubResource("StandardMaterial3D_w48qg")
-amount = 25
-lifetime = 2.0
-transform_align = 1
-transform_align_channel_filter = 1
-process_material = SubResource("ParticleProcessMaterial_4c57u")
-draw_pass_1 = SubResource("QuadMesh_dg77c")
 
 [editable path="FlashingBox002"]
 [editable path="FlashingBox003"]
