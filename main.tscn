@@ -669,33 +669,33 @@ animation_name = "swing_back"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.513203, 18.057299, -82.17265)
 animation_name = "swing_back"
 
-[node name="Node3D" type="Node3D" parent="." unique_id=2050157302]
+[node name="Teleporter" type="Node3D" parent="." unique_id=2050157302]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -78.661125, -6.5650187, -173.3181)
+script = ExtResource("11_ycdy4")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Node3D" unique_id=1773750206]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Teleporter" unique_id=1773750206]
 root_node = NodePath("../Teleporter")
 libraries/ = SubResource("AnimationLibrary_efxa6")
 
-[node name="TargetTransform" type="Marker3D" parent="Node3D" unique_id=1241689555]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 0.08226395, 35.955994)
+[node name="TargetTransform" type="Marker3D" parent="Teleporter" unique_id=1241689555]
+transform = Transform3D(0.65275943, -0.15368122, 0.7418135, 0, 0.97920734, 0.20286202, -0.75756526, -0.1324201, 0.6391868, 47.912914, 2.4980402, 23.378342)
 
-[node name="Teleporter" type="Area3D" parent="Node3D" unique_id=463969939]
-script = ExtResource("11_ycdy4")
+[node name="Teleporter" type="Area3D" parent="Teleporter" unique_id=463969939]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/Teleporter" unique_id=1587170660]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Teleporter/Teleporter" unique_id=1587170660]
 shape = SubResource("SphereShape3D_0rbx2")
 
-[node name="MeshFloat" type="Node3D" parent="Node3D/Teleporter" unique_id=1167030276]
+[node name="MeshFloat" type="Node3D" parent="Teleporter/Teleporter" unique_id=1167030276]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D/Teleporter/MeshFloat" unique_id=247219893]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Teleporter/Teleporter/MeshFloat" unique_id=247219893]
 mesh = ExtResource("11_dg77c")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="Node3D/Teleporter" unique_id=1109323750]
+[node name="OmniLight3D" type="OmniLight3D" parent="Teleporter/Teleporter" unique_id=1109323750]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.3364077, 0)
 light_energy = 5.0
 omni_range = 10.0
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="Node3D/Teleporter" unique_id=392668388]
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Teleporter/Teleporter" unique_id=392668388]
 material_override = SubResource("StandardMaterial3D_w48qg")
 amount = 25
 lifetime = 2.0
