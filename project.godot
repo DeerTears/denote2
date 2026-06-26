@@ -14,7 +14,7 @@ config/name="Denote 3D"
 config/description="A playground of many 3D game mechanics, featuring audio, volumetric fog, and surrealist art styles."
 run/main_scene="uid://bqjj6l71w23fw"
 config/features=PackedStringArray("4.7", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="uid://8wp6v5jjcdmm"
 
 [audio]
 

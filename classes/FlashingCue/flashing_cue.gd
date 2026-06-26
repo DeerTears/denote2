@@ -18,6 +18,9 @@ extends Node3D
 		$MeshInstance.material_override.emission = new_colour
 		$OmniLight3D.light_color = new_colour
 
+func _ready() -> void:
+	flash_colour = (flash_colour)
+
 @onready var audio := $Audio
 
 func play_sound() -> void:

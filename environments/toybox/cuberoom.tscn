@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://derf7b7t1ix2h"]
+
+[sub_resource type="FogMaterial" id="FogMaterial_lquwl"]
+density = 0.5
+emission = Color(0.79453504, 0, 0.0031073212, 1)
+
+[node name="Cuberoom" type="FogVolume" unique_id=1990892975]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.5, 1.5, -7)
+size = Vector3(17, 9, 16)
+material = SubResource("FogMaterial_lquwl")

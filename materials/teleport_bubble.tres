@@ -1,0 +1,34 @@
+[gd_resource type="SphereMesh" format=3 uid="uid://c2jms7orae2l7"]
+
+[ext_resource type="Texture2D" uid="uid://bgu2kwjfxpfl8" path="res://skies/9sky.png" id="1_l1uq0"]
+[ext_resource type="Material" uid="uid://diymmgei4x0xy" path="res://materials/orange_shimmer.tres" id="2_veett"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_uqhpx"]
+noise_type = 2
+frequency = 0.05
+fractal_octaves = 4
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_84qxe"]
+width = 64
+height = 64
+generate_mipmaps = false
+noise = SubResource("FastNoiseLite_uqhpx")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ycdy4"]
+next_pass = ExtResource("2_veett")
+transparency = 1
+cull_mode = 1
+albedo_texture = ExtResource("1_l1uq0")
+metallic_specular = 0.0
+roughness = 0.0
+rim_enabled = true
+rim_tint = 1.0
+refraction_scale = 1.0
+refraction_texture = SubResource("NoiseTexture2D_84qxe")
+grow = true
+grow_amount = 0.075
+
+[resource]
+material = SubResource("StandardMaterial3D_ycdy4")
+radius = 2.0
+height = 4.0

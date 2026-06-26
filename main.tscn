@@ -2,12 +2,17 @@
 
 [ext_resource type="Texture2D" uid="uid://bgu2kwjfxpfl8" path="res://skies/9sky.png" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://bwggrf7sbmkcv" path="res://PlayerCharacter/player_character_scene.tscn" id="2_0xm2m"]
+[ext_resource type="Material" uid="uid://diymmgei4x0xy" path="res://materials/orange_shimmer.tres" id="2_4c57u"]
 [ext_resource type="PackedScene" uid="uid://4a8ub0rxkni2" path="res://classes/FlashingCue/flashing_box.tscn" id="2_7mycd"]
 [ext_resource type="Material" uid="uid://dwsslggqyhaa8" path="res://materials/red_shimmer.tres" id="2_h2yge"]
 [ext_resource type="Material" uid="uid://24xlxn3xcpvy" path="res://materials/yellow_shimmer.tres" id="6_272bh"]
 [ext_resource type="Material" uid="uid://cout0clfv4v6h" path="res://materials/blue_shimmer.tres" id="7_5vw27"]
 [ext_resource type="PackedScene" uid="uid://dx43g6w153j24" path="res://classes/Doors/swing_door.tscn" id="8_5vw27"]
+[ext_resource type="PackedScene" uid="uid://7x5tvqd6jx46" path="res://classes/Pendulum/pendulum.tscn" id="9_4c57u"]
 [ext_resource type="PackedScene" uid="uid://dkfwk58a02jig" path="res://classes/Button/button.tscn" id="9_kek77"]
+[ext_resource type="SphereMesh" uid="uid://c2jms7orae2l7" path="res://materials/teleport_bubble.tres" id="11_dg77c"]
+[ext_resource type="Texture2D" uid="uid://bgxf06orj223h" path="res://classes/Teleporter/star_04.png" id="11_efxa6"]
+[ext_resource type="Script" uid="uid://bpmxtogpt3a5h" path="res://classes/Teleporter/teleporter.gd" id="11_ycdy4"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_0xm2m"]
 panorama = ExtResource("1_ig7tw")
@@ -31,7 +36,8 @@ volumetric_fog_detail_spread = 6.0
 volumetric_fog_temporal_reprojection_amount = 0.93
 
 [sub_resource type="FogMaterial" id="FogMaterial_lquwl"]
-density = 1.25
+density = 0.33
+emission = Color(0.79453504, 0, 0.0031073212, 1)
 
 [sub_resource type="Animation" id="Animation_5vw27"]
 resource_name = "pause"
@@ -79,18 +85,10 @@ _data = {
 &"sequence": SubResource("Animation_kek77")
 }
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xiff7"]
-diffuse_mode = 2
-specular_mode = 1
-albedo_color = Color(0.9882353, 0.57254905, 0, 1)
-metallic = 0.2
-metallic_specular = 0.3
-roughness = 0.0
-
 [sub_resource type="SphereMesh" id="SphereMesh_0rbx2"]
-material = SubResource("StandardMaterial3D_xiff7")
+material = ExtResource("2_4c57u")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5vw27"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kek77"]
 resource_local_to_scene = true
 albedo_color = Color(0.9596217, 0.23248312, 0, 1)
 emission_enabled = true
@@ -98,7 +96,7 @@ emission = Color(0.9596217, 0.23248312, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_272bh"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_kek77"]
+[sub_resource type="BoxMesh" id="BoxMesh_4c57u"]
 resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_272bh")
 
@@ -119,6 +117,102 @@ material = SubResource("StandardMaterial3D_efxa6")
 [sub_resource type="BoxMesh" id="BoxMesh_0rbx2"]
 material = SubResource("StandardMaterial3D_4c57u")
 
+[sub_resource type="Animation" id="Animation_efxa6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshFloat/MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshFloat:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_4c57u"]
+resource_name = "bounce"
+length = 6.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshFloat/MeshInstance3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(2, 3.0000002, 4),
+"transitions": PackedFloat32Array(3, 0.2, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -0.5, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshFloat:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3.0000002, 4, 5.0000005, 6),
+"transitions": PackedFloat32Array(-2, -2, -2, -2, -2, -2, -2),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -0.2, 0), Vector3(0, 0, 0), Vector3(0, -0.2, 0), Vector3(0, 0.2, 0), Vector3(0, -0.2, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_efxa6"]
+_data = {
+&"RESET": SubResource("Animation_efxa6"),
+&"bounce": SubResource("Animation_4c57u")
+}
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_0rbx2"]
+radius = 2.25
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w48qg"]
+transparency = 2
+alpha_scissor_threshold = 0.564
+alpha_antialiasing_mode = 0
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("11_efxa6")
+
+[sub_resource type="Curve" id="Curve_efxa6"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.04966888, 1), 0.0, 0.0, 0, 0, Vector2(0.5033113, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_dg77c"]
+curve = SubResource("Curve_efxa6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4c57u"]
+emission_shape_scale = Vector3(2.5, 2.5, 2.5)
+emission_shape = 2
+emission_sphere_radius = 1.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = 1.9999977
+radial_accel_max = 1.9999977
+damping_min = 1.0
+damping_max = 1.0
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_dg77c")
+
+[sub_resource type="QuadMesh" id="QuadMesh_dg77c"]
+size = Vector2(2, 2)
+
 [node name="Node3D" type="Node3D" unique_id=1723350232]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2123878684]
@@ -130,7 +224,7 @@ shadow_enabled = true
 
 [node name="Fog" type="Node" parent="." unique_id=1393229473]
 
-[node name="Cuberoom" type="FogVolume" parent="Fog" unique_id=1643840161]
+[node name="Cuberoom" type="FogVolume" parent="Fog" unique_id=1990892975]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.5, 1.5, -7)
 size = Vector3(17, 9, 16)
 material = SubResource("FogMaterial_lquwl")
@@ -168,8 +262,8 @@ flash_colour = Color(0.9596217, 0.23248312, 0, 1)
 light_color = Color(0.9596217, 0.23248312, 0, 1)
 
 [node name="MeshInstance" parent="FlashingBox002" index="1" unique_id=1699869762]
-material_override = SubResource("StandardMaterial3D_5vw27")
-mesh = SubResource("BoxMesh_kek77")
+material_override = SubResource("StandardMaterial3D_kek77")
+mesh = SubResource("BoxMesh_4c57u")
 
 [node name="FlashingBox003" parent="." unique_id=1462933091 instance=ExtResource("2_7mycd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -9)
@@ -363,6 +457,36 @@ use_collision = true
 size = Vector3(6.8033447, 0.81359863, 17.914063)
 material = ExtResource("2_h2yge")
 
+[node name="CSGBox3D6" type="CSGBox3D" parent="Map" unique_id=439348410]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.220673, 7.7221804, -108.17992)
+use_collision = true
+size = Vector3(17.527184, 3.3374634, 13.700256)
+material = ExtResource("2_h2yge")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Map" unique_id=1684564719]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.279079, 7.7221794, -119.8873)
+use_collision = true
+size = Vector3(24.889822, 3.3374634, 9.757874)
+material = ExtResource("2_h2yge")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Map" unique_id=2079377738]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -80.72092, 7.7221794, -167.1065)
+use_collision = true
+size = Vector3(24.889822, 3.3374634, 32.19629)
+material = ExtResource("2_h2yge")
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="Map" unique_id=1899731711]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -80.72092, -13.277821, -160.76624)
+use_collision = true
+size = Vector3(24.889822, 3.3374634, 50)
+material = ExtResource("2_h2yge")
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="Map" unique_id=1353676062]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -80.72092, -1.150814, -183.76624)
+use_collision = true
+size = Vector3(24.889822, 21.769424, 4)
+material = ExtResource("2_h2yge")
+
 [node name="CSGBox3D4" type="CSGBox3D" parent="Map" unique_id=22305091]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.649109, -1.9393358, 10.077916)
 use_collision = true
@@ -524,6 +648,61 @@ is_locked = true
 [node name="DoorSwing_A2" parent="." unique_id=1004449292 instance=ExtResource("8_5vw27")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.630932, -1.5368482, -7.6189184)
 is_autoclosing = true
+
+[node name="Pendulum" parent="." unique_id=1301983509 instance=ExtResource("9_4c57u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.513203, 18.057299, -43.569805)
+animation_name = "swing"
+
+[node name="Pendulum3" parent="." unique_id=928459506 instance=ExtResource("9_4c57u")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -22.486797, 18.057299, -120.56981)
+animation_name = "swing"
+
+[node name="Pendulum5" parent="." unique_id=1594089024 instance=ExtResource("9_4c57u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -79.71673, 18.057299, -140.0972)
+animation_name = "swing"
+
+[node name="Pendulum4" parent="." unique_id=963683412 instance=ExtResource("9_4c57u")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -60.486797, 18.057299, -120.56981)
+animation_name = "swing_back"
+
+[node name="Pendulum2" parent="." unique_id=1004080888 instance=ExtResource("9_4c57u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.513203, 18.057299, -82.17265)
+animation_name = "swing_back"
+
+[node name="Node3D" type="Node3D" parent="." unique_id=2050157302]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -78.661125, -6.5650187, -173.3181)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Node3D" unique_id=1773750206]
+root_node = NodePath("../Teleporter")
+libraries/ = SubResource("AnimationLibrary_efxa6")
+
+[node name="TargetTransform" type="Marker3D" parent="Node3D" unique_id=1241689555]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 0.08226395, 35.955994)
+
+[node name="Teleporter" type="Area3D" parent="Node3D" unique_id=463969939]
+script = ExtResource("11_ycdy4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/Teleporter" unique_id=1587170660]
+shape = SubResource("SphereShape3D_0rbx2")
+
+[node name="MeshFloat" type="Node3D" parent="Node3D/Teleporter" unique_id=1167030276]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D/Teleporter/MeshFloat" unique_id=247219893]
+mesh = ExtResource("11_dg77c")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Node3D/Teleporter" unique_id=1109323750]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.3364077, 0)
+light_energy = 5.0
+omni_range = 10.0
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Node3D/Teleporter" unique_id=392668388]
+material_override = SubResource("StandardMaterial3D_w48qg")
+amount = 25
+lifetime = 2.0
+transform_align = 1
+transform_align_channel_filter = 1
+process_material = SubResource("ParticleProcessMaterial_4c57u")
+draw_pass_1 = SubResource("QuadMesh_dg77c")
 
 [editable path="FlashingBox002"]
 [editable path="FlashingBox003"]

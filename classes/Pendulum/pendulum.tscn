@@ -1,0 +1,125 @@
+[gd_scene format=3 uid="uid://7x5tvqd6jx46"]
+
+[ext_resource type="AudioStream" uid="uid://cugg0fmo3lq3v" path="res://classes/Pendulum/rolling.ogg" id="1_06058"]
+[ext_resource type="Material" uid="uid://24xlxn3xcpvy" path="res://materials/yellow_shimmer.tres" id="1_e64u3"]
+[ext_resource type="Script" uid="uid://cqdi50ww62dry" path="res://classes/Pendulum/pendulum.gd" id="1_lm220"]
+
+[sub_resource type="Animation" id="Animation_bou6h"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_4c57u"]
+resource_name = "swing"
+length = 10.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5, 10),
+"transitions": PackedFloat32Array(-2, -2, 1),
+"update": 0,
+"values": [Vector3(-1.0471976, 0, 0), Vector3(1.0471976, 0, 0), Vector3(-1.0471976, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_e64u3"]
+resource_name = "swing_back"
+length = 10.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5, 10),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [Vector3(1.0471976, 0, 0), Vector3(-1.0471976, 0, 0), Vector3(1.0471976, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_efxa6"]
+_data = {
+&"RESET": SubResource("Animation_bou6h"),
+&"swing": SubResource("Animation_4c57u"),
+&"swing_back": SubResource("Animation_e64u3")
+}
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_0rbx2"]
+height = 4.0
+radius = 5.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_0rbx2"]
+material = ExtResource("1_e64u3")
+top_radius = 5.0
+bottom_radius = 5.0
+height = 4.0
+radial_segments = 128
+rings = 0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0rbx2"]
+size = Vector3(0.5, 12, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_xiff7"]
+material = ExtResource("1_e64u3")
+size = Vector3(0.5, 12, 0.5)
+
+[node name="Pendulum" type="Node3D" unique_id=1301983509]
+script = ExtResource("1_lm220")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=993556709]
+root_node = NodePath("../PendulumBody")
+libraries/ = SubResource("AnimationLibrary_efxa6")
+
+[node name="PendulumBody" type="AnimatableBody3D" parent="." unique_id=1957448589]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PendulumBody" unique_id=1933511361]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, -16.5, 0)
+shape = SubResource("CylinderShape3D_0rbx2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PendulumBody" unique_id=1695058025]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, -16.5, 0)
+mesh = SubResource("CylinderMesh_0rbx2")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="PendulumBody" unique_id=1143872370]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, 0)
+shape = SubResource("BoxShape3D_0rbx2")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="PendulumBody" unique_id=890876829]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, 0)
+mesh = SubResource("BoxMesh_xiff7")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="PendulumBody" unique_id=116667007]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -16.5, 0)
+stream = ExtResource("1_06058")
+unit_size = 15.0
+max_db = 2.0
+pitch_scale = 0.75
+autoplay = true
+max_distance = 40.0
+bus = &"Game Objects"
+attenuation_filter_cutoff_hz = 8000.0
+doppler_tracking = 2
+
+[node name="Marker3D" type="Marker3D" parent="." unique_id=1716884952]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8.39752, 19.272844)
+gizmo_extents = 5.0
+
+[node name="Marker3D2" type="Marker3D" parent="." unique_id=1114277194]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -8.39752, -19.28747)
+gizmo_extents = 5.0
