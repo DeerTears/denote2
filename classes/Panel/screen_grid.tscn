@@ -1,0 +1,381 @@
+[gd_scene format=3 uid="uid://fdq7h4tkpnwt"]
+
+[ext_resource type="PackedScene" uid="uid://ckilt7b2xuknc" path="res://classes/Panel/Grid/cell.tscn" id="1_wayj4"]
+[ext_resource type="Texture2D" uid="uid://8wp6v5jjcdmm" path="res://icon.png" id="2_a184y"]
+
+[node name="Control" type="Control" unique_id=68221902]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Grid" type="Panel" parent="." unique_id=1120997295]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -237.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Margin" type="MarginContainer" parent="Grid" unique_id=2087749759]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 128
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Margin" type="HBoxContainer" parent="Grid/Margin" unique_id=57090989]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="Lanes" type="VBoxContainer" parent="Grid/Margin/Margin" unique_id=59183418]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+
+[node name="LaneA" type="HBoxContainer" parent="Grid/Margin/Margin/Lanes" unique_id=1675211820]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+
+[node name="Indicator" type="ColorRect" parent="Grid/Margin/Margin/Lanes/LaneA" unique_id=85672747]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+color = Color(0.6899754, 0.021226479, 0.3419129, 1)
+
+[node name="Icon" type="TextureRect" parent="Grid/Margin/Margin/Lanes/LaneA/Indicator" unique_id=999836448]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_a184y")
+
+[node name="1" parent="Grid/Margin/Margin/Lanes/LaneA" unique_id=1016837179 instance=ExtResource("1_wayj4")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="2" parent="Grid/Margin/Margin/Lanes/LaneA" unique_id=560905729 instance=ExtResource("1_wayj4")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="3" parent="Grid/Margin/Margin/Lanes/LaneA" unique_id=214032296 instance=ExtResource("1_wayj4")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="4" parent="Grid/Margin/Margin/Lanes/LaneA" unique_id=580135096 instance=ExtResource("1_wayj4")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="5" parent="Grid/Margin/Margin/Lanes/LaneA" unique_id=1417385678 instance=ExtResource("1_wayj4")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="6" parent="Grid/Margin/Margin/Lanes/LaneA" unique_id=1669466044 instance=ExtResource("1_wayj4")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="7" parent="Grid/Margin/Margin/Lanes/LaneA" unique_id=470310510 instance=ExtResource("1_wayj4")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="8" parent="Grid/Margin/Margin/Lanes/LaneA" unique_id=2107397667 instance=ExtResource("1_wayj4")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LaneB" type="HBoxContainer" parent="Grid/Margin/Margin/Lanes" unique_id=743714675]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+
+[node name="Indicator2" type="ColorRect" parent="Grid/Margin/Margin/Lanes/LaneB" unique_id=1177618154]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+color = Color(0.5034418, 0.3380657, 0.15307021, 1)
+
+[node name="Icon2" type="TextureRect" parent="Grid/Margin/Margin/Lanes/LaneB/Indicator2" unique_id=1500975481]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_a184y")
+
+[node name="1" parent="Grid/Margin/Margin/Lanes/LaneB" unique_id=1066851229 instance=ExtResource("1_wayj4")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="2" parent="Grid/Margin/Margin/Lanes/LaneB" unique_id=1139116348 instance=ExtResource("1_wayj4")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="3" parent="Grid/Margin/Margin/Lanes/LaneB" unique_id=1863384477 instance=ExtResource("1_wayj4")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="4" parent="Grid/Margin/Margin/Lanes/LaneB" unique_id=731789491 instance=ExtResource("1_wayj4")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="5" parent="Grid/Margin/Margin/Lanes/LaneB" unique_id=1230042730 instance=ExtResource("1_wayj4")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="6" parent="Grid/Margin/Margin/Lanes/LaneB" unique_id=27372379 instance=ExtResource("1_wayj4")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="7" parent="Grid/Margin/Margin/Lanes/LaneB" unique_id=448003910 instance=ExtResource("1_wayj4")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="8" parent="Grid/Margin/Margin/Lanes/LaneB" unique_id=751372783 instance=ExtResource("1_wayj4")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LaneC" type="HBoxContainer" parent="Grid/Margin/Margin/Lanes" unique_id=2032159692]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+
+[node name="Indicator3" type="ColorRect" parent="Grid/Margin/Margin/Lanes/LaneC" unique_id=401206440]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+color = Color(0.16527739, 0.45152336, 3.85046e-07, 1)
+
+[node name="Icon3" type="TextureRect" parent="Grid/Margin/Margin/Lanes/LaneC/Indicator3" unique_id=1260782188]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_a184y")
+
+[node name="1" parent="Grid/Margin/Margin/Lanes/LaneC" unique_id=822419303 instance=ExtResource("1_wayj4")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="2" parent="Grid/Margin/Margin/Lanes/LaneC" unique_id=100986398 instance=ExtResource("1_wayj4")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="3" parent="Grid/Margin/Margin/Lanes/LaneC" unique_id=113631940 instance=ExtResource("1_wayj4")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="4" parent="Grid/Margin/Margin/Lanes/LaneC" unique_id=69729023 instance=ExtResource("1_wayj4")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="5" parent="Grid/Margin/Margin/Lanes/LaneC" unique_id=950772519 instance=ExtResource("1_wayj4")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="6" parent="Grid/Margin/Margin/Lanes/LaneC" unique_id=656984659 instance=ExtResource("1_wayj4")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="7" parent="Grid/Margin/Margin/Lanes/LaneC" unique_id=502040312 instance=ExtResource("1_wayj4")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="8" parent="Grid/Margin/Margin/Lanes/LaneC" unique_id=430686463 instance=ExtResource("1_wayj4")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LaneD" type="HBoxContainer" parent="Grid/Margin/Margin/Lanes" unique_id=567490702]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+
+[node name="Indicator4" type="ColorRect" parent="Grid/Margin/Margin/Lanes/LaneD" unique_id=290801430]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+color = Color(0.46427572, 0.0028218096, 0.8815723, 1)
+
+[node name="Icon4" type="TextureRect" parent="Grid/Margin/Margin/Lanes/LaneD/Indicator4" unique_id=258324571]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_a184y")
+
+[node name="1" parent="Grid/Margin/Margin/Lanes/LaneD" unique_id=919964531 instance=ExtResource("1_wayj4")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="2" parent="Grid/Margin/Margin/Lanes/LaneD" unique_id=836610400 instance=ExtResource("1_wayj4")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="3" parent="Grid/Margin/Margin/Lanes/LaneD" unique_id=687922829 instance=ExtResource("1_wayj4")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="4" parent="Grid/Margin/Margin/Lanes/LaneD" unique_id=547195018 instance=ExtResource("1_wayj4")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="5" parent="Grid/Margin/Margin/Lanes/LaneD" unique_id=2025480277 instance=ExtResource("1_wayj4")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="6" parent="Grid/Margin/Margin/Lanes/LaneD" unique_id=2031321576 instance=ExtResource("1_wayj4")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="7" parent="Grid/Margin/Margin/Lanes/LaneD" unique_id=763050619 instance=ExtResource("1_wayj4")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="8" parent="Grid/Margin/Margin/Lanes/LaneD" unique_id=1489564132 instance=ExtResource("1_wayj4")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LaneE" type="HBoxContainer" parent="Grid/Margin/Margin/Lanes" unique_id=1634156729]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+
+[node name="Indicator5" type="ColorRect" parent="Grid/Margin/Margin/Lanes/LaneE" unique_id=1144246769]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+color = Color(0.1566979, 0.18812138, 0.9999998, 1)
+
+[node name="Icon5" type="TextureRect" parent="Grid/Margin/Margin/Lanes/LaneE/Indicator5" unique_id=990729471]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_a184y")
+
+[node name="1" parent="Grid/Margin/Margin/Lanes/LaneE" unique_id=1651165278 instance=ExtResource("1_wayj4")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="2" parent="Grid/Margin/Margin/Lanes/LaneE" unique_id=1421188590 instance=ExtResource("1_wayj4")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="3" parent="Grid/Margin/Margin/Lanes/LaneE" unique_id=211128207 instance=ExtResource("1_wayj4")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="4" parent="Grid/Margin/Margin/Lanes/LaneE" unique_id=1458173130 instance=ExtResource("1_wayj4")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="5" parent="Grid/Margin/Margin/Lanes/LaneE" unique_id=1346946311 instance=ExtResource("1_wayj4")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="6" parent="Grid/Margin/Margin/Lanes/LaneE" unique_id=640199982 instance=ExtResource("1_wayj4")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="7" parent="Grid/Margin/Margin/Lanes/LaneE" unique_id=355622813 instance=ExtResource("1_wayj4")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="8" parent="Grid/Margin/Margin/Lanes/LaneE" unique_id=1942713055 instance=ExtResource("1_wayj4")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorRect" type="ColorRect" parent="Grid/Margin/Margin" unique_id=2013047992]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+color = Color(0.12, 0.012000003, 0.04800002, 1)
+
+[node name="Controls" type="Panel" parent="." unique_id=1385269766]
+layout_mode = 0
+offset_top = 875.0
+offset_right = 693.0
+offset_bottom = 1080.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Controls" unique_id=958435839]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Controls/MarginContainer" unique_id=800640257]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Button" type="Button" parent="Controls/MarginContainer/HBoxContainer" unique_id=1645407210]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 36
+text = "Play"
+
+[node name="Button2" type="Button" parent="Controls/MarginContainer/HBoxContainer" unique_id=569781657]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 36
+text = "Pause"
+
+[node name="Button3" type="Button" parent="Controls/MarginContainer/HBoxContainer" unique_id=1265990578]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 36
+text = "Reset"
+
+[node name="Node2D" type="Node2D" parent="." unique_id=1147051237]
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D" unique_id=15651565]
+position = Vector2(48, 88)
+texture = ExtResource("2_a184y")
+
+[node name="Line2D" type="Line2D" parent="Node2D/Sprite2D" unique_id=750040156]
+position = Vector2(0, 16)
+points = PackedVector2Array(0, 720, 0, 0)
+default_color = Color(1, 0.42352942, 0.47843137, 1)
