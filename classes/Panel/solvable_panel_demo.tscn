@@ -1,0 +1,138 @@
+[gd_scene format=3 uid="uid://pa2obyfkw7xm"]
+
+[ext_resource type="Script" uid="uid://c33j64eminnem" path="res://classes/Panel/screen.gd" id="1_3q28k"]
+[ext_resource type="Texture2D" uid="uid://o6qsr45gqmw3" path="res://classes/Panel/lock.svg" id="2_3q28k"]
+[ext_resource type="Material" uid="uid://oi8pdb50u45k" path="res://materials/colourblind_red.tres" id="2_d83h4"]
+[ext_resource type="Material" uid="uid://dynivksr7yakj" path="res://materials/colourblind_yellow.tres" id="3_tbfap"]
+[ext_resource type="Material" uid="uid://djvoqevhvd8xa" path="res://materials/colourblind_purple.tres" id="4_kc5kv"]
+[ext_resource type="Material" uid="uid://mfxp6af4lqbu" path="res://materials/colourblind_teal.tres" id="5_bx0jp"]
+[ext_resource type="Material" uid="uid://cr2vhokfa57ay" path="res://materials/colourblind_blue.tres" id="6_em3jy"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0rbx2"]
+size = Vector3(1.6, 0.9, 0.2)
+
+[sub_resource type="QuadMesh" id="QuadMesh_02sjh"]
+resource_local_to_scene = true
+size = Vector2(1.6, 0.9)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tojag"]
+resource_local_to_scene = true
+albedo_color = Color(0, 0.09999998, 0.15, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_rv3gl"]
+material = ExtResource("2_d83h4")
+size = Vector3(0.6, 0.125, 0.05)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ahuc1"]
+material = ExtResource("4_kc5kv")
+size = Vector3(0.7, 0.125, 0.05)
+
+[sub_resource type="BoxMesh" id="BoxMesh_tbfap"]
+material = ExtResource("3_tbfap")
+size = Vector3(0.8, 0.125, 0.05)
+
+[sub_resource type="BoxMesh" id="BoxMesh_bx0jp"]
+material = ExtResource("5_bx0jp")
+size = Vector3(0.90000004, 0.125, 0.05)
+
+[sub_resource type="BoxMesh" id="BoxMesh_hkw7r"]
+material = ExtResource("6_em3jy")
+size = Vector3(1, 0.125, 0.05)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ahuc1"]
+albedo_color = Color(0.1053, 0.18216, 0.27, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_3q28k"]
+material = SubResource("StandardMaterial3D_ahuc1")
+size = Vector3(0.4, 0.45000002, 0.05)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rv3gl"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("2_3q28k")
+
+[sub_resource type="QuadMesh" id="QuadMesh_0rbx2"]
+material = SubResource("StandardMaterial3D_rv3gl")
+size = Vector2(0.25, 0.25)
+
+[sub_resource type="Environment" id="Environment_0rbx2"]
+background_mode = 1
+background_color = Color(1, 1, 1, 1)
+ambient_light_color = Color(1, 1, 1, 1)
+tonemap_mode = 2
+tonemap_exposure = 1.1
+tonemap_white = 2.0
+
+[node name="Node3D" type="Node3D" unique_id=333076835]
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=513767815]
+transform = Transform3D(1, 0, 0, 0, 0.9368679, 0.34968364, 0, -0.34968364, 0.9368679, 0, 0.58533543, 1.3000001)
+fov = 40.0
+
+[node name="Screen" type="Area3D" parent="." unique_id=1165770710]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+collision_layer = 4
+collision_mask = 0
+input_capture_on_drag = true
+script = ExtResource("1_3q28k")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Screen" unique_id=1793276044]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.03)
+shape = SubResource("BoxShape3D_0rbx2")
+
+[node name="Mesh" type="MeshInstance3D" parent="Screen" unique_id=1963745691]
+transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, -0.006, 0, 0.049)
+mesh = SubResource("QuadMesh_02sjh")
+surface_material_override/0 = SubResource("StandardMaterial3D_tojag")
+
+[node name="KeyButton1" type="Area3D" parent="Screen" unique_id=1963286646]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.35000002, 2.1855694e-08)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Screen/KeyButton1" unique_id=1742285751]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20000002, -0.050000012, 0.02500003)
+mesh = SubResource("BoxMesh_rv3gl")
+
+[node name="KeyButton2" type="Area3D" parent="Screen" unique_id=857171240]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.15, 1.7484556e-08)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Screen/KeyButton2" unique_id=180132417]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0, 0.025000032)
+mesh = SubResource("BoxMesh_ahuc1")
+
+[node name="KeyButton3" type="Area3D" parent="Screen" unique_id=1279450870]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, -7.450581e-09, 1.7484556e-08)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Screen/KeyButton3" unique_id=100154755]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15000002, 0, 0.025000023)
+mesh = SubResource("BoxMesh_tbfap")
+
+[node name="KeyButton4" type="Area3D" parent="Screen" unique_id=2076738578]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, -0.15000002, 1.7484556e-08)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Screen/KeyButton4" unique_id=1515114432]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.10000001, 0, 0.025000017)
+mesh = SubResource("BoxMesh_bx0jp")
+
+[node name="KeyButton5" type="Area3D" parent="Screen" unique_id=859282924]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, -0.3, 1.7484556e-08)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Screen/KeyButton5" unique_id=1896469774]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05, 0, 0.025)
+mesh = SubResource("BoxMesh_hkw7r")
+
+[node name="SubmitButton" type="Area3D" parent="Screen" unique_id=1449407725]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.55, 0, -4.8082526e-08)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Screen/SubmitButton" unique_id=80902557]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.024999976, 0, 0.025)
+mesh = SubResource("BoxMesh_3q28k")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Screen/SubmitButton/MeshInstance3D" unique_id=1295653335]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, -0.026655827)
+mesh = SubResource("QuadMesh_0rbx2")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=286253235]
+environment = SubResource("Environment_0rbx2")
+
+[connection signal="input_event" from="Screen" to="Screen" method="_on_input_event"]
