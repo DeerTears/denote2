@@ -7,10 +7,29 @@
 [ext_resource type="Material" uid="uid://dwsslggqyhaa8" path="res://materials/red_shimmer.tres" id="2_h2yge"]
 [ext_resource type="Material" uid="uid://24xlxn3xcpvy" path="res://materials/yellow_shimmer.tres" id="6_272bh"]
 [ext_resource type="Material" uid="uid://cout0clfv4v6h" path="res://materials/blue_shimmer.tres" id="7_5vw27"]
+[ext_resource type="AudioStream" uid="uid://dq0oww7g556gg" path="res://environments/hellroom/car_chse.wav" id="8_2cqfq"]
 [ext_resource type="PackedScene" uid="uid://dx43g6w153j24" path="res://classes/Doors/swing_door.tscn" id="8_5vw27"]
+[ext_resource type="PackedScene" uid="uid://ba10mxmm5fwab" path="res://classes/Panel/screen.tscn" id="8_dg77c"]
 [ext_resource type="PackedScene" uid="uid://7x5tvqd6jx46" path="res://classes/Pendulum/pendulum.tscn" id="9_4c57u"]
 [ext_resource type="PackedScene" uid="uid://dkfwk58a02jig" path="res://classes/Button/button.tscn" id="9_kek77"]
+[ext_resource type="AudioStream" uid="uid://bupjsnjsv8pvg" path="res://environments/hellroom/chopper_.wav" id="9_yaehf"]
+[ext_resource type="AudioStream" uid="uid://d0r1j5n8e1571" path="res://environments/hellroom/gas_trbp.wav" id="10_074og"]
+[ext_resource type="AudioStream" uid="uid://b63bq24om2kb4" path="res://environments/hellroom/helicpti.wav" id="11_074og"]
+[ext_resource type="AudioStream" uid="uid://bv0c2sdjmqb32" path="res://environments/hellroom/airtrfc4.wav" id="11_cegan"]
 [ext_resource type="PackedScene" uid="uid://cyvcamcmkqgj2" path="res://classes/Teleporter/teleporter.tscn" id="11_efxa6"]
+[ext_resource type="AudioStream" uid="uid://uxjvwhxord0h" path="res://environments/hellroom/hiway101.wav" id="12_cegan"]
+[ext_resource type="Script" uid="uid://b7qd3pov74d8k" path="res://classes/AmbientNoise/ambientnoise.gd" id="12_yaehf"]
+[ext_resource type="AudioStream" uid="uid://by73hag4n6ghe" path="res://environments/hellroom/idling_a.wav" id="13_ryguw"]
+[ext_resource type="AudioStream" uid="uid://r360ft1wu2ff" path="res://environments/hellroom/planes_f.wav" id="14_d13ii"]
+[ext_resource type="AudioStream" uid="uid://b5m7otqsy7d8v" path="res://environments/hellroom/stop_con.wav" id="15_1u8w0"]
+[ext_resource type="AudioStream" uid="uid://cmr0fxq05pchb" path="res://environments/hellroom/truck_ps.wav" id="16_0odxb"]
+[ext_resource type="AudioStream" uid="uid://darqhbjk5jab4" path="res://environments/hellroom/airtrfc1.wav" id="18_lswn8"]
+[ext_resource type="AudioStream" uid="uid://da1jpa4qsidbh" path="res://environments/hellroom/airtrfc2.wav" id="19_a6jrf"]
+[ext_resource type="AudioStream" uid="uid://bp5yr08fi2gtf" path="res://environments/hellroom/airtrfc3.wav" id="20_xuqvo"]
+[ext_resource type="AudioStream" uid="uid://bu3ln5b2j82st" path="res://environments/hellroom/horn_9.wav" id="22_xuqvo"]
+[ext_resource type="AudioStream" uid="uid://ck833xgyjavcq" path="res://environments/hellroom/hedge_tr.wav" id="23_qsp4k"]
+[ext_resource type="AudioStream" uid="uid://bd2sjw1vdthba" path="res://environments/hellroom/old_mach.wav" id="24_qsp4k"]
+[ext_resource type="AudioStream" uid="uid://g1ed64qtxyto" path="res://environments/hellroom/wipers_s.wav" id="25_kq58d"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_0xm2m"]
 panorama = ExtResource("1_ig7tw")
@@ -114,6 +133,39 @@ material = SubResource("StandardMaterial3D_efxa6")
 
 [sub_resource type="BoxMesh" id="BoxMesh_0rbx2"]
 material = SubResource("StandardMaterial3D_4c57u")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_dg77c"]
+playback_mode = 1
+streams_count = 9
+stream_0/stream = ExtResource("8_2cqfq")
+stream_1/stream = ExtResource("9_yaehf")
+stream_2/stream = ExtResource("10_074og")
+stream_3/stream = ExtResource("11_074og")
+stream_4/stream = ExtResource("12_cegan")
+stream_5/stream = ExtResource("13_ryguw")
+stream_6/stream = ExtResource("14_d13ii")
+stream_7/stream = ExtResource("15_1u8w0")
+stream_8/stream = ExtResource("16_0odxb")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_qsp4k"]
+playback_mode = 1
+streams_count = 4
+stream_0/stream = ExtResource("18_lswn8")
+stream_1/stream = ExtResource("19_a6jrf")
+stream_2/stream = ExtResource("20_xuqvo")
+stream_3/stream = ExtResource("11_cegan")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_0rbx2"]
+playback_mode = 1
+streams_count = 5
+stream_0/stream = ExtResource("13_ryguw")
+stream_1/stream = ExtResource("22_xuqvo")
+stream_2/stream = ExtResource("23_qsp4k")
+stream_3/stream = ExtResource("24_qsp4k")
+stream_4/stream = ExtResource("25_kq58d")
+
+[sub_resource type="BoxMesh" id="BoxMesh_xiff7"]
+size = Vector3(1.8, 1.1, 0.02)
 
 [node name="Node3D" type="Node3D" unique_id=1723350232]
 
@@ -294,7 +346,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, -22)
 mesh = SubResource("BoxMesh_0rbx2")
 
 [node name="PlayerCharacter" parent="." unique_id=307017552 instance=ExtResource("2_0xm2m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29, 0, -14)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, -13)
 nb_jumps_in_air_allowed = 20
 
 [node name="Map" type="Node3D" parent="." unique_id=441799618]
@@ -424,6 +476,74 @@ use_collision = true
 size = Vector3(52, 12, 42.56494)
 metadata/_edit_lock_ = true
 
+[node name="Radio" type="AudioStreamPlayer3D" parent="Map/Floor1_Main" unique_id=1162616734]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.486008, -3.451623, 39.38601)
+stream = SubResource("AudioStreamRandomizer_dg77c")
+volume_db = -5.0
+unit_size = 2.0
+autoplay = true
+max_distance = 18.0
+bus = &"Ambient Noise"
+script = ExtResource("12_yaehf")
+
+[node name="AirTraffic1" type="AudioStreamPlayer3D" parent="Map/Floor1_Main" unique_id=1099812766]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.645084, -6.958556, 40.27954)
+stream = SubResource("AudioStreamRandomizer_qsp4k")
+volume_db = -5.0
+unit_size = 2.0
+autoplay = true
+max_distance = 18.0
+bus = &"Ambient Noise"
+script = ExtResource("12_yaehf")
+
+[node name="AirTraffic2" type="AudioStreamPlayer3D" parent="Map/Floor1_Main" unique_id=1853056817]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.806034, -6.958556, 40.27954)
+stream = SubResource("AudioStreamRandomizer_qsp4k")
+volume_db = -5.0
+unit_size = 2.0
+autoplay = true
+max_distance = 18.0
+bus = &"Ambient Noise"
+script = ExtResource("12_yaehf")
+
+[node name="Radio2" type="AudioStreamPlayer3D" parent="Map/Floor1_Main" unique_id=379227720]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.974903, -3.2465148, 31.865967)
+stream = SubResource("AudioStreamRandomizer_dg77c")
+volume_db = -5.0
+unit_size = 2.0
+autoplay = true
+max_distance = 18.0
+bus = &"Ambient Noise"
+script = ExtResource("12_yaehf")
+
+[node name="Radio3" type="AudioStreamPlayer3D" parent="Map/Floor1_Main" unique_id=1811238506]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.0009, -3.2465148, 50.161007)
+stream = SubResource("AudioStreamRandomizer_dg77c")
+volume_db = -5.0
+unit_size = 2.0
+autoplay = true
+max_distance = 18.0
+bus = &"Ambient Noise"
+script = ExtResource("12_yaehf")
+
+[node name="Radio4" type="AudioStreamPlayer3D" parent="Map/Floor1_Main" unique_id=573875079]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.0009, -8.193176, 40.896717)
+stream = SubResource("AudioStreamRandomizer_dg77c")
+volume_db = -5.0
+unit_size = 2.0
+autoplay = true
+max_distance = 18.0
+bus = &"Ambient Noise"
+script = ExtResource("12_yaehf")
+
+[node name="Machine" type="AudioStreamPlayer3D" parent="Map/Floor1_Main" unique_id=1941521358]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.42815, -6.226305, 39.556175)
+stream = SubResource("AudioStreamRandomizer_0rbx2")
+unit_size = 3.0
+autoplay = true
+max_distance = 18.0
+bus = &"Ambient Noise"
+
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="Map/Floor1_Main" unique_id=846175868]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, -4.5, 3.5)
 operation = 2
@@ -466,6 +586,72 @@ size = Vector3(12.797852, 11.624512, 7.204834)
 transform = Transform3D(1, 0, 0, 0, 0.8660254, -0.5, 0, 0.5, 0.8660254, 9, 4.700962, -3.75)
 size = Vector3(7, 4, 7)
 metadata/_edit_lock_ = true
+
+[node name="HellRoom" type="CSGCombiner3D" parent="Map" unique_id=1557301920]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Map/HellRoom" unique_id=75508596]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 29.6)
+size = Vector3(5, 5, 21)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Map/HellRoom" unique_id=1502731873]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0.5000001, 29.4)
+operation = 2
+size = Vector3(4, 3.8, 21)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Map/HellRoom" unique_id=1580521252]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 0, 19.821903)
+size = Vector3(5, 5, 0.15332031)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Map/HellRoom" unique_id=41584155]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, -0.4, 20.341)
+operation = 2
+size = Vector3(1.6, 2, 1.3178955)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Map/HellRoom" unique_id=1683524317]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.963682, -1.8921354, 39.000862)
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="Map/HellRoom" unique_id=1048418747]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.963682, -1.8921354, 20.950207)
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="Map/HellRoom" unique_id=1733443751]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.963682, -1.8921354, 23.296715)
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="Map/HellRoom" unique_id=1970819966]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.963682, -1.8921354, 26.428028)
+
+[node name="OmniLight3D5" type="OmniLight3D" parent="Map/HellRoom" unique_id=1095118893]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.963682, -1.8921354, 29.841587)
+
+[node name="OmniLight3D6" type="OmniLight3D" parent="Map/HellRoom" unique_id=52420120]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.963682, -1.8921354, 33.253624)
+
+[node name="OmniLight3D7" type="OmniLight3D" parent="Map/HellRoom" unique_id=932147566]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.963682, 2.1494038, 39.000862)
+
+[node name="OmniLight3D8" type="OmniLight3D" parent="Map/HellRoom" unique_id=1829243826]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.963682, 2.1494038, 20.950207)
+
+[node name="OmniLight3D9" type="OmniLight3D" parent="Map/HellRoom" unique_id=1387266306]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.963682, 2.1494038, 23.296715)
+
+[node name="OmniLight3D10" type="OmniLight3D" parent="Map/HellRoom" unique_id=1198615148]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.963682, 2.1494038, 26.428028)
+
+[node name="OmniLight3D11" type="OmniLight3D" parent="Map/HellRoom" unique_id=1895824444]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.963682, 2.1494038, 29.841587)
+
+[node name="OmniLight3D12" type="OmniLight3D" parent="Map/HellRoom" unique_id=625972503]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.963682, 2.1494038, 33.253624)
+
+[node name="ScreenFrame" type="Node3D" parent="Map/HellRoom" unique_id=722752581]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 19.58133, 0.046298876, -13.022797)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Map/HellRoom/ScreenFrame" unique_id=35898777]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.063331604)
+mesh = SubResource("BoxMesh_xiff7")
+
+[node name="Screen" parent="Map/HellRoom/ScreenFrame" unique_id=1165770710 instance=ExtResource("8_dg77c")]
 
 [node name="Button" parent="." unique_id=562730668 instance=ExtResource("9_kek77")]
 transform = Transform3D(-0.12194782, -0.09865315, 0.98762155, 0, 0.9950481, 0.099394985, -0.99253654, 0.012121001, -0.12134394, 7.720843, -1.3067738, -1.868273)

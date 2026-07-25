@@ -1,0 +1,129 @@
+[gd_scene format=3 uid="uid://ba10mxmm5fwab"]
+
+[ext_resource type="Script" uid="uid://bpirwka4k2vdi" path="res://classes/Panel/input_panel.gd" id="1_i2vk8"]
+[ext_resource type="Script" uid="uid://c33j64eminnem" path="res://classes/Panel/screen.gd" id="1_jh0nj"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0rbx2"]
+size = Vector3(1.6, 0.9, 0.2)
+
+[sub_resource type="QuadMesh" id="QuadMesh_0rbx2"]
+resource_local_to_scene = true
+size = Vector2(1.6, 0.9)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_jh0nj"]
+viewport_path = NodePath("Mesh/SVC/SV")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jh0nj"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_jh0nj")
+
+[node name="Screen" type="Area3D" unique_id=1165770710]
+collision_layer = 4
+collision_mask = 0
+input_capture_on_drag = true
+script = ExtResource("1_jh0nj")
+
+[node name="CameraTarget" type="Marker3D" parent="." unique_id=656930705]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0.018, -1.5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1793276044]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.03)
+shape = SubResource("BoxShape3D_0rbx2")
+
+[node name="Mesh" type="MeshInstance3D" parent="." unique_id=1963745691]
+transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, -0.005928695, 0.016920596, 0.049185902)
+mesh = SubResource("QuadMesh_0rbx2")
+surface_material_override/0 = SubResource("StandardMaterial3D_jh0nj")
+
+[node name="SVC" type="SubViewportContainer" parent="Mesh" unique_id=1604531803]
+visibility_layer = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="SV" type="SubViewport" parent="Mesh/SVC" unique_id=191976092]
+disable_3d = true
+transparent_bg = true
+handle_input_locally = false
+gui_embed_subwindows = true
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="Puzzle" type="ColorRect" parent="Mesh/SVC/SV" unique_id=2105853833]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+color = Color(0, 1, 1, 1)
+script = ExtResource("1_i2vk8")
+
+[node name="Margin" type="MarginContainer" parent="Mesh/SVC/SV/Puzzle" unique_id=338932584]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -661.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Buttons" type="VBoxContainer" parent="Mesh/SVC/SV/Puzzle/Margin" unique_id=123299725]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="0Highest" type="Button" parent="Mesh/SVC/SV/Puzzle/Margin/Buttons" unique_id=146890262]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 64
+text = "Highest"
+
+[node name="1High" type="Button" parent="Mesh/SVC/SV/Puzzle/Margin/Buttons" unique_id=1291727229]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 64
+text = "High"
+
+[node name="2Medium" type="Button" parent="Mesh/SVC/SV/Puzzle/Margin/Buttons" unique_id=1253494115]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 64
+text = "Medium"
+
+[node name="3Low" type="Button" parent="Mesh/SVC/SV/Puzzle/Margin/Buttons" unique_id=1501782437]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 64
+text = "Low"
+
+[node name="4Lowest" type="Button" parent="Mesh/SVC/SV/Puzzle/Margin/Buttons" unique_id=358381888]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 64
+text = "Lowest"
+
+[node name="Submit" type="Button" parent="Mesh/SVC/SV/Puzzle" unique_id=2100517309]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -665.0
+offset_top = -268.0
+offset_right = -4.0
+offset_bottom = 268.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 96
+text = "Submit"
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="gui_input" from="Mesh/SVC/SV/Puzzle" to="Mesh/SVC/SV/Puzzle" method="_on_gui_input"]

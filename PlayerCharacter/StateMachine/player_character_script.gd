@@ -110,6 +110,8 @@ func call_use_on_overlapping_bodies() -> void:
 		print_debug("%s found in picker" % [body])
 		if body.has_method("use"):
 			body.call("use")
+		if body.has_method("propagate_collision_point"):
+			body.call("propagate_collision_point", $%Picker.get_collision_point())
 		else:
 			print_debug("%s does not have 'use' function" % [body])
 

@@ -196,3 +196,7 @@ theme_override_font_sizes/font_size = 40
 text = "....."
 label_settings = ExtResource("12_gnmoh")
 vertical_alignment = 1
+
+[node name="PanelViewCamera" type="Camera3D" parent="." unique_id=957692563]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0.55, 0)
+fov = 37.8
