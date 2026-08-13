@@ -1,0 +1,129 @@
+[gd_scene format=3 uid="uid://b0d3bneeanb0g"]
+
+[ext_resource type="Script" uid="uid://sofdka7btqgf" path="res://prototypes/sound_source.gd" id="1_lpr8n"]
+[ext_resource type="Script" uid="uid://d07wr2gglwany" path="res://classes/Data/sound.gd" id="2_48s1n"]
+[ext_resource type="Texture2D" uid="uid://dr3f2os302lud" path="res://prototypes/radar.svg" id="3_sgho6"]
+[ext_resource type="Texture2D" uid="uid://cf11yel58l35g" path="res://classes/Button/button_icon.png" id="4_8fnpm"]
+
+[sub_resource type="Resource" id="Resource_vjcbg"]
+script = ExtResource("2_48s1n")
+length = 1
+octave = 4
+metadata/_custom_type_script = "uid://d07wr2gglwany"
+
+[sub_resource type="Resource" id="Resource_s3thq"]
+script = ExtResource("2_48s1n")
+pitch = 2
+octave = 4
+metadata/_custom_type_script = "uid://d07wr2gglwany"
+
+[sub_resource type="Resource" id="Resource_5yfj6"]
+script = ExtResource("2_48s1n")
+pitch = 2
+octave = 4
+metadata/_custom_type_script = "uid://d07wr2gglwany"
+
+[sub_resource type="Resource" id="Resource_8v3om"]
+script = ExtResource("2_48s1n")
+metadata/_custom_type_script = "uid://d07wr2gglwany"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xiff7"]
+radius = 258.19373
+
+[sub_resource type="Animation" id="Animation_ywrey"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Radar:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Radar:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1.353256, 1.353256, 1.353256, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_vjcbg"]
+resource_name = "radar"
+length = 1.25
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Radar:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.9, 1.2333333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1), Vector2(1.25, 1.25)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Radar:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.9, 1.2),
+"transitions": PackedFloat32Array(0.18301071, 0.32987693, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.5019608), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"emit_next_sound"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s3thq"]
+_data = {
+&"RESET": SubResource("Animation_ywrey"),
+&"radar": SubResource("Animation_vjcbg")
+}
+
+[node name="SoundSource" type="Area2D" unique_id=1623941428]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_lpr8n")
+sound_array = Array[ExtResource("2_48s1n")]([SubResource("Resource_vjcbg"), SubResource("Resource_s3thq"), SubResource("Resource_5yfj6"), SubResource("Resource_8v3om")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1559827167]
+shape = SubResource("CircleShape2D_xiff7")
+
+[node name="Radar" type="Sprite2D" parent="." unique_id=2034029969]
+modulate = Color(1.353256, 1.353256, 1.353256, 0)
+scale = Vector2(1e-05, 1e-05)
+texture = ExtResource("3_sgho6")
+
+[node name="ButtonIcon" type="Sprite2D" parent="." unique_id=950671186]
+scale = Vector2(0.30405405, 0.30405405)
+texture = ExtResource("4_8fnpm")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=177620492]
+libraries/ = SubResource("AnimationLibrary_s3thq")
+autoplay = &"RESET"

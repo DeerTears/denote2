@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://nwtrola37644"]
+
+[node name="ProtoNoteShort" type="ColorRect" unique_id=702744652]
+custom_minimum_size = Vector2(8, 24)

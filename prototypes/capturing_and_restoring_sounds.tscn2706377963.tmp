@@ -1,0 +1,179 @@
+[gd_scene format=3 uid="uid://dvdrd140u0p7t"]
+
+[ext_resource type="Script" uid="uid://ce8675gmnsjnw" path="res://prototypes/character.gd" id="1_2o7x0"]
+[ext_resource type="Texture2D" uid="uid://cpueloqm4x7fl" path="res://icon.svg" id="2_wsh23"]
+[ext_resource type="Texture2D" uid="uid://cf11yel58l35g" path="res://classes/Button/button_icon.png" id="3_ltfq3"]
+[ext_resource type="Script" uid="uid://sofdka7btqgf" path="res://prototypes/sound_source.gd" id="3_vjcbg"]
+[ext_resource type="Texture2D" uid="uid://dr3f2os302lud" path="res://prototypes/radar.svg" id="4_ywrey"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0rbx2"]
+size = Vector2(130, 132)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0rbx2"]
+radius = 338.5336
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xiff7"]
+radius = 258.19373
+
+[sub_resource type="Animation" id="Animation_ywrey"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Radar:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Radar:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1.353256, 1.353256, 1.353256, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_vjcbg"]
+resource_name = "radar"
+length = 1.25
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Radar:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.9, 1.2333333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1), Vector2(1.25, 1.25)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Radar:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.9, 1.2),
+"transitions": PackedFloat32Array(0.18301071, 0.32987693, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.5019608), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"emit_next_sound"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s3thq"]
+_data = {
+&"RESET": SubResource("Animation_ywrey"),
+&"radar": SubResource("Animation_vjcbg")
+}
+
+[node name="Node2D" type="Node2D" unique_id=1102601017]
+
+[node name="Player" type="CharacterBody2D" parent="." unique_id=804662987]
+position = Vector2(1022, 274)
+script = ExtResource("1_2o7x0")
+
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=355345672]
+zoom = Vector2(0.5, 0.5)
+position_smoothing_enabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=38063245]
+shape = SubResource("RectangleShape2D_0rbx2")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=527469584]
+texture = ExtResource("2_wsh23")
+
+[node name="Recorder" type="Area2D" parent="Player" unique_id=556546765]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Recorder" unique_id=1338396003]
+shape = SubResource("CircleShape2D_0rbx2")
+
+[node name="Polygon2D" type="Polygon2D" parent="Player/Recorder" unique_id=1153474463]
+
+[node name="LoudButton" type="Area2D" parent="." unique_id=1939791915]
+position = Vector2(1640, 288)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("3_vjcbg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LoudButton" unique_id=1751894806]
+shape = SubResource("CircleShape2D_xiff7")
+
+[node name="Radar" type="Sprite2D" parent="LoudButton" unique_id=947998885]
+modulate = Color(1.353256, 1.353256, 1.353256, 0)
+scale = Vector2(1e-05, 1e-05)
+texture = ExtResource("4_ywrey")
+
+[node name="ButtonIcon" type="Sprite2D" parent="LoudButton" unique_id=145462237]
+scale = Vector2(0.30405405, 0.30405405)
+texture = ExtResource("3_ltfq3")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LoudButton" unique_id=587687088]
+libraries/ = SubResource("AnimationLibrary_s3thq")
+autoplay = &"RESET"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1184229847]
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer" unique_id=1489260955]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -108.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="UI" type="HBoxContainer" parent="CanvasLayer/MarginContainer" unique_id=2141968040]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Left" type="Button" parent="CanvasLayer/MarginContainer/UI" unique_id=2092062407]
+layout_mode = 2
+text = " << "
+
+[node name="CurrentSlot" type="Label" parent="CanvasLayer/MarginContainer/UI" unique_id=1527916719]
+layout_mode = 2
+text = "Slot 1 / 8"
+
+[node name="Right" type="Button" parent="CanvasLayer/MarginContainer/UI" unique_id=1652804512]
+layout_mode = 2
+text = " >> "
+
+[node name="Label" type="Label" parent="CanvasLayer/MarginContainer/UI" unique_id=201027555]
+layout_mode = 2
+text = "Recording..."
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/MarginContainer/UI" unique_id=1070686614]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1

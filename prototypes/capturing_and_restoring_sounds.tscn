@@ -1,0 +1,147 @@
+[gd_scene format=3 uid="uid://dvdrd140u0p7t"]
+
+[ext_resource type="PackedScene" uid="uid://cvq8d28r0wcc7" path="res://prototypes/proto_player.tscn" id="1_ltfq3"]
+[ext_resource type="PackedScene" uid="uid://b0d3bneeanb0g" path="res://prototypes/proto_sound_source.tscn" id="3_ywrey"]
+[ext_resource type="Script" uid="uid://d07wr2gglwany" path="res://classes/Data/sound.gd" id="4_5yfj6"]
+[ext_resource type="Script" uid="uid://bj8tjuli82x24" path="res://prototypes/proto_door.gd" id="4_vjcbg"]
+[ext_resource type="Texture2D" uid="uid://vto0bbjdwboy" path="res://addons/godot-eyesee/icon.svg" id="4_ywrey"]
+
+[sub_resource type="Resource" id="Resource_vjcbg"]
+script = ExtResource("4_5yfj6")
+length = 1
+octave = 4
+metadata/_custom_type_script = "uid://d07wr2gglwany"
+
+[sub_resource type="Resource" id="Resource_5yfj6"]
+script = ExtResource("4_5yfj6")
+metadata/_custom_type_script = "uid://d07wr2gglwany"
+
+[sub_resource type="Resource" id="Resource_s3thq"]
+script = ExtResource("4_5yfj6")
+pitch = 3
+length = 1
+metadata/_custom_type_script = "uid://d07wr2gglwany"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0rbx2"]
+size = Vector2(936, 168)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0rbx2"]
+radius = 235.05319
+
+[sub_resource type="Animation" id="Animation_ywrey"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Wall2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1102, -226)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Wall:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(179, -226)]
+}
+
+[sub_resource type="Animation" id="Animation_ltfq3"]
+resource_name = "move"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Wall2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1102, -226), Vector2(1290, -226)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Wall:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(179, -226), Vector2(10, -226)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ywrey"]
+_data = {
+&"RESET": SubResource("Animation_ywrey"),
+&"move": SubResource("Animation_ltfq3")
+}
+
+[node name="Node2D" type="Node2D" unique_id=1102601017]
+
+[node name="SoundSource" parent="." unique_id=1623941428 instance=ExtResource("3_ywrey")]
+position = Vector2(1539, 306)
+
+[node name="SoundSource2" parent="." unique_id=896632736 instance=ExtResource("3_ywrey")]
+position = Vector2(1546, 768)
+sound_array = Array[ExtResource("4_5yfj6")]([SubResource("Resource_vjcbg"), SubResource("Resource_5yfj6"), SubResource("Resource_s3thq")])
+init_delay = 2.5
+
+[node name="SoundSource3" parent="." unique_id=1512417417 instance=ExtResource("3_ywrey")]
+position = Vector2(294, 1141)
+sound_array = Array[ExtResource("4_5yfj6")]([SubResource("Resource_vjcbg"), SubResource("Resource_5yfj6"), SubResource("Resource_s3thq")])
+init_delay = 2.5
+
+[node name="Player" parent="." unique_id=714402239 instance=ExtResource("1_ltfq3")]
+position = Vector2(771, 465)
+
+[node name="Listener" type="Area2D" parent="." unique_id=128204281]
+
+[node name="Door" type="Node2D" parent="." unique_id=910356654]
+script = ExtResource("4_vjcbg")
+
+[node name="Wall" type="AnimatableBody2D" parent="Door" unique_id=788862664]
+position = Vector2(179, -226)
+
+[node name="Polygon2D" type="Polygon2D" parent="Door/Wall" unique_id=27388902]
+position = Vector2(-1596, -210)
+polygon = PackedVector2Array(1133, 131, 1136, 294, 2054, 292, 2061, 130)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door/Wall" unique_id=1653102038]
+shape = SubResource("RectangleShape2D_0rbx2")
+
+[node name="Wall2" type="AnimatableBody2D" parent="Door" unique_id=973346654]
+position = Vector2(1102, -226)
+
+[node name="Polygon2D" type="Polygon2D" parent="Door/Wall2" unique_id=921795079]
+position = Vector2(-1596, -210)
+polygon = PackedVector2Array(1133, 131, 1136, 294, 2054, 292, 2061, 130)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door/Wall2" unique_id=1123919093]
+shape = SubResource("RectangleShape2D_0rbx2")
+
+[node name="Listener" type="Area2D" parent="Door" unique_id=231746151]
+unique_name_in_owner = true
+position = Vector2(-2, 119)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door/Listener" unique_id=1388387412]
+shape = SubResource("CircleShape2D_0rbx2")
+
+[node name="Sprite2D" type="Sprite2D" parent="Door/Listener" unique_id=528450311]
+scale = Vector2(10.595646, 10.595646)
+texture = ExtResource("4_ywrey")
+
+[node name="WallAnimator" type="AnimationPlayer" parent="Door" unique_id=1484052583]
+libraries/ = SubResource("AnimationLibrary_ywrey")
+autoplay = &"RESET"
