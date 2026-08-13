@@ -4,5 +4,8 @@ func _ready() -> void:
 	$Listener.connect("area_entered", on_area_entered)
 
 func on_area_entered(area: Area2D) -> void:
-	if area is ProtoPlayer:
-		pass
+	if area is SoundSource:
+		connect(area.sound_emitted, on_sound_recieved)
+
+func on_sound_recieved(sound_data: Sound) -> void:
+	print("listener recieved %s sound data" % [sound_data])
