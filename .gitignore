@@ -1,3 +1,7 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
+/concept art
+*.uid
+classes/Music/limbic_bits_prophet5_sequential_shortened.ogg
+classes/Music/limbic_bits_prophet5_sequential_shortened.ogg.import
