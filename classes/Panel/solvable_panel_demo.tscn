@@ -16,6 +16,9 @@
 [ext_resource type="AudioStream" uid="uid://cklor2bktlbxe" path="res://instrument_packs/marimba/4_b_flat-2.wav" id="9_p7k4b"]
 [ext_resource type="AudioStream" uid="uid://bqxjtuka5oo55" path="res://instrument_packs/marimba/3_g-2.wav" id="11_ivd15"]
 [ext_resource type="AudioStream" uid="uid://b6nub2ndrhk3" path="res://instrument_packs/marimba/3_e_flat-2.wav" id="13_rywbo"]
+[ext_resource type="Script" uid="uid://c6e56r8s3bbvx" path="res://classes/Panel/submit_button.gd" id="15_rywbo"]
+[ext_resource type="AudioStream" uid="uid://cpfsbcyt2qxa0" path="res://ui/fail.wav" id="16_t6ah5"]
+[ext_resource type="AudioStream" uid="uid://dp50rwvy8ui4" path="res://ui/success.wav" id="17_0m1l3"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0rbx2"]
 size = Vector3(1.6, 0.9, 0.2)
@@ -63,6 +66,9 @@ size = Vector3(1, 0.125, 0.05)
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_pbxbx"]
 points = PackedVector3Array(0.5, 0.0625, 0.025, 0.5, 0.0625, -0.025, -0.5, 0.0625, 0.025, 0.5, -0.0625, 0.025, 0.5, -0.0625, -0.025, -0.5, 0.0625, -0.025, -0.5, -0.0625, 0.025, -0.5, -0.0625, -0.025)
 
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ivd15"]
+points = PackedVector3Array(-0.2, -0.22500001, -0.025, -0.2, -0.22500001, 0.025, -0.2, 0.22500001, -0.025, 0.2, -0.22500001, -0.025, 0.2, -0.22500001, 0.025, -0.2, 0.22500001, 0.025, 0.2, 0.22500001, -0.025, 0.2, 0.22500001, 0.025)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ahuc1"]
 albedo_color = Color(0, 0, 0, 1)
 
@@ -102,13 +108,21 @@ size = Vector2(32, 32)
 [node name="Node3D" type="Node3D" unique_id=333076835]
 
 [node name="PointingCamera" type="Camera3D" parent="." unique_id=513767815]
-transform = Transform3D(1, 0, 0, 0, 0.9999666, 0.008167416, 0, -0.008167416, 0.9999666, 0, 0.035335433, 1.3000001)
-fov = 40.0
+transform = Transform3D(1, 0, 0, 0, 0.9999667, 0.008167417, 0, -0.008167417, 0.9999667, 0, 0.048215877, 5.2066054)
+fov = 10.0
 script = ExtResource("1_kc5kv")
 
-[node name="Cursor" type="TextureRect" parent="PointingCamera" unique_id=2034748225]
-offset_right = 192.0
-offset_bottom = 192.0
+[node name="Cursor" type="Control" parent="PointingCamera" unique_id=1479867434]
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+
+[node name="Image" type="TextureRect" parent="PointingCamera/Cursor" unique_id=2034748225]
+layout_mode = 0
+offset_left = -47.0
+offset_top = -27.0
+offset_right = 145.0
+offset_bottom = 165.0
 texture = ExtResource("2_bx0jp")
 
 [node name="Screen" type="Area3D" parent="." unique_id=1165770710]
@@ -118,6 +132,7 @@ collision_mask = 0
 collision_priority = 0.5
 input_ray_pickable = false
 script = ExtResource("1_tbfap")
+answer = Array[int]([0, 1, 2, 3, 4])
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Screen" unique_id=1793276044]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.03)
@@ -133,10 +148,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.35000002, 2.1855694e-
 collision_layer = 16
 collision_mask = 0
 script = ExtResource("4_em3jy")
+note = 0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Screen/KeyButton1" unique_id=82701393]
 stream = ExtResource("6_hfl5q")
-bus = &"Instruments"
+bus = &"Playable Instruments"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Screen/KeyButton1" unique_id=1742285751]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.100000024, -0.050000012, 0.025000026)
@@ -151,10 +167,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.15, 1.7484556e-08)
 collision_layer = 16
 collision_mask = 0
 script = ExtResource("4_em3jy")
+note = 1
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Screen/KeyButton2" unique_id=1363179049]
 stream = ExtResource("8_pbxbx")
-bus = &"Instruments"
+bus = &"Playable Instruments"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Screen/KeyButton2" unique_id=180132417]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.124999985, 0, 0.025000036)
@@ -171,7 +188,7 @@ script = ExtResource("4_em3jy")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Screen/KeyButton3" unique_id=643522773]
 stream = ExtResource("9_p7k4b")
-bus = &"Instruments"
+bus = &"Playable Instruments"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Screen/KeyButton3" unique_id=100154755]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.10000001, 0, 0.025000023)
@@ -186,10 +203,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, -0.15000002, 1.7484556e-
 collision_layer = 16
 collision_mask = 0
 script = ExtResource("4_em3jy")
+note = 3
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Screen/KeyButton4" unique_id=860044417]
 stream = ExtResource("11_ivd15")
-bus = &"Instruments"
+bus = &"Playable Instruments"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Screen/KeyButton4" unique_id=1515114432]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.07500003, 0, 0.025000017)
@@ -204,10 +222,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, -0.3, 1.7484556e-08)
 collision_layer = 16
 collision_mask = 0
 script = ExtResource("4_em3jy")
+note = 4
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Screen/KeyButton5" unique_id=1018408182]
 stream = ExtResource("13_rywbo")
-bus = &"Instruments"
+bus = &"Playable Instruments"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Screen/KeyButton5" unique_id=1896469774]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.049999997, 0, 0.025000002)
@@ -221,6 +240,19 @@ shape = SubResource("ConvexPolygonShape3D_pbxbx")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.55, 0, -4.8082526e-08)
 collision_layer = 16
 collision_mask = 0
+script = ExtResource("15_rywbo")
+
+[node name="AudioFail" type="AudioStreamPlayer" parent="Screen/SubmitButton" unique_id=1056700775]
+stream = ExtResource("16_t6ah5")
+bus = &"UI"
+
+[node name="AudioSuccess" type="AudioStreamPlayer" parent="Screen/SubmitButton" unique_id=2072899581]
+stream = ExtResource("17_0m1l3")
+bus = &"UI"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Screen/SubmitButton" unique_id=784180397]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.024999976, 0, 0.025)
+shape = SubResource("ConvexPolygonShape3D_ivd15")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Screen/SubmitButton" unique_id=80902557]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.024999976, 0, 0.025)
@@ -235,4 +267,5 @@ environment = SubResource("Environment_0rbx2")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1126776100]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 1.5)
+visible = false
 mesh = SubResource("QuadMesh_xiff7")
