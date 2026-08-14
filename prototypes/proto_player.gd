@@ -9,7 +9,7 @@ extends CharacterBody2D
 ## How fast the player moves, in velocity units.
 const SPEED := 300.0
 ## How fast the memory fills up, as a delta multiplier.
-const MEMORY_SPEED := 20.0
+const MEMORY_SPEED := 0.0
 
 ## The recorded notes on the tape recorder.
 var memory: Array = []
@@ -50,14 +50,15 @@ func on_recorder_area_exited(area: Area2D) -> void:
 func on_sound_recieved(sound_data: Sound) -> void:
 	if not is_recording:
 		return
-	print_debug("recieved: pitch %s | length %s | octave %s !" % [Data.NOTES.keys()[sound_data.pitch], Data.LENGTHS.keys()[sound_data.length], sound_data.octave])
+	var distance = global_position.distance_to(sound_data.original_location) / 480.0
+	print_debug("recieved: pitch %s | length %s | octave %s | distance %s !" % [Data.NOTES.keys()[sound_data.pitch], Data.LENGTHS.keys()[sound_data.length], sound_data.octave, distance])
 	add_note_to_memory(sound_data)
 
 func add_note_to_memory(sound_data: Sound) -> void:
 	memory.append(sound_data)
 	var is_long = sound_data.length == Data.LENGTHS.LONG
 	var new_counter: ColorRect = load("res://prototypes/proto_note_%s.tscn" % ["long" if is_long else "short"]).instantiate()
-	new_counter.color = Color.RED if sound_data.pitch == Data.NOTES.HIGHEST else Color.BLUE
+	new_counter.color = Data.get_note_color(sound_data.pitch)
 	%MemoryContainer.add_child(new_counter)
 
 func toggle_recording() -> void:

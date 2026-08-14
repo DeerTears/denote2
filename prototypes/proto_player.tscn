@@ -1,19 +1,44 @@
 [gd_scene format=3 uid="uid://cvq8d28r0wcc7"]
 
 [ext_resource type="Script" uid="uid://ce8675gmnsjnw" path="res://prototypes/proto_player.gd" id="1_h88if"]
+[ext_resource type="Script" uid="uid://sofdka7btqgf" path="res://prototypes/sound_source.gd" id="2_6n8b3"]
 [ext_resource type="Texture2D" uid="uid://cpueloqm4x7fl" path="res://icon.svg" id="2_al2y4"]
-[ext_resource type="Script" uid="uid://d3ax3v5ob8yvw" path="res://prototypes/player_sound_source.gd" id="2_kbfbm"]
 [ext_resource type="Texture2D" uid="uid://dr3f2os302lud" path="res://prototypes/radar.svg" id="3_kbfbm"]
+[ext_resource type="Script" uid="uid://d07wr2gglwany" path="res://classes/Data/sound.gd" id="3_lfq23"]
+[ext_resource type="Texture2D" uid="uid://ca00x54hhooa" path="res://prototypes/circle.svg" id="4_cdap5"]
+[ext_resource type="Texture2D" uid="uid://cf11yel58l35g" path="res://classes/Button/button_icon.png" id="5_qkaj0"]
 [ext_resource type="Texture2D" uid="uid://cc2gr21tqe3wt" path="res://PlayerCharacter/HUD/crosshair.png" id="6_1apjf"]
 
+[sub_resource type="Resource" id="Resource_vjcbg"]
+script = ExtResource("3_lfq23")
+length = 1
+octave = 4
+metadata/_custom_type_script = "uid://d07wr2gglwany"
+
+[sub_resource type="Resource" id="Resource_s3thq"]
+script = ExtResource("3_lfq23")
+pitch = 2
+octave = 4
+metadata/_custom_type_script = "uid://d07wr2gglwany"
+
+[sub_resource type="Resource" id="Resource_5yfj6"]
+script = ExtResource("3_lfq23")
+pitch = 2
+octave = 4
+metadata/_custom_type_script = "uid://d07wr2gglwany"
+
+[sub_resource type="Resource" id="Resource_8v3om"]
+script = ExtResource("3_lfq23")
+metadata/_custom_type_script = "uid://d07wr2gglwany"
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_xiff7"]
-radius = 258.19373
+radius = 356.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0rbx2"]
 size = Vector2(130, 132)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0rbx2"]
-radius = 338.5336
+radius = 120.0
 
 [sub_resource type="Animation" id="Animation_g3x8x"]
 length = 0.001
@@ -103,18 +128,28 @@ _data = {
 [node name="Player" type="CharacterBody2D" unique_id=714402239]
 script = ExtResource("1_h88if")
 
-[node name="PlayerSoundSource" type="Area2D" parent="." unique_id=1623941428]
+[node name="SoundSource" type="Area2D" parent="." unique_id=1623941428]
 collision_layer = 4
 collision_mask = 0
-script = ExtResource("2_kbfbm")
+script = ExtResource("2_6n8b3")
+sound_array = Array[ExtResource("3_lfq23")]([SubResource("Resource_vjcbg"), SubResource("Resource_s3thq"), SubResource("Resource_5yfj6"), SubResource("Resource_8v3om")])
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerSoundSource" unique_id=1559827167]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SoundSource" unique_id=1559827167]
 shape = SubResource("CircleShape2D_xiff7")
 
-[node name="Radar" type="Sprite2D" parent="PlayerSoundSource" unique_id=2034029969]
-modulate = Color(1, 1, 1, 0)
+[node name="Radar" type="Sprite2D" parent="SoundSource" unique_id=2034029969]
+modulate = Color(1.353256, 1.353256, 1.353256, 0)
 scale = Vector2(1e-05, 1e-05)
-texture = ExtResource("3_kbfbm")
+texture = ExtResource("4_cdap5")
+
+[node name="ButtonIcon" type="Sprite2D" parent="SoundSource" unique_id=950671186]
+scale = Vector2(0.30405405, 0.30405405)
+texture = ExtResource("5_qkaj0")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="SoundSource" unique_id=322043458]
+max_distance = 1000.0
+panning_strength = 4.0
+bus = &"Playable Instruments"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1579181713]
 zoom = Vector2(0.5, 0.5)
@@ -133,8 +168,6 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RecorderArea" unique_id=1726756930]
 shape = SubResource("CircleShape2D_0rbx2")
-
-[node name="Polygon2D" type="Polygon2D" parent="RecorderArea" unique_id=868569166]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=827661919]
 
@@ -188,6 +221,7 @@ layout_mode = 2
 
 [node name="MemoryFull" type="ProgressBar" parent="CanvasLayer/MarginContainer/UI/HBoxContainer" unique_id=29955657]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -198,12 +232,16 @@ layout_mode = 2
 focus_mode = 0
 text = "Reset"
 
+[node name="MemoryPlay" type="Button" parent="CanvasLayer/MarginContainer/UI/HBoxContainer" unique_id=2120612991]
+layout_mode = 2
+text = "Play >"
+
 [node name="MemoryContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer/UI" unique_id=1837266181]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/separation = 8
+theme_override_constants/separation = 4
 
 [node name="Recording" type="Control" parent="CanvasLayer" unique_id=1081675600]
 visible = false

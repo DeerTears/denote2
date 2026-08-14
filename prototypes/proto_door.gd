@@ -5,7 +5,7 @@ func _ready() -> void:
 
 func on_area_entered(area: Area2D) -> void:
 	if area is SoundSource:
-		connect(area.sound_emitted, on_sound_recieved)
+		area.sound_emitted.connect(on_sound_recieved)
 
 func on_sound_recieved(sound_data: Sound) -> void:
 	print("listener recieved %s sound data" % [sound_data])

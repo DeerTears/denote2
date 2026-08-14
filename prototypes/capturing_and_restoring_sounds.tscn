@@ -6,20 +6,107 @@
 [ext_resource type="Script" uid="uid://bj8tjuli82x24" path="res://prototypes/proto_door.gd" id="4_vjcbg"]
 [ext_resource type="Texture2D" uid="uid://vto0bbjdwboy" path="res://addons/godot-eyesee/icon.svg" id="4_ywrey"]
 
+[sub_resource type="Resource" id="Resource_8v3om"]
+script = ExtResource("4_5yfj6")
+metadata/_custom_type_script = "uid://d07wr2gglwany"
+
+[sub_resource type="Resource" id="Resource_kkvdb"]
+script = ExtResource("4_5yfj6")
+pitch = 4
+metadata/_custom_type_script = "uid://d07wr2gglwany"
+
+[sub_resource type="Resource" id="Resource_utq5g"]
+script = ExtResource("4_5yfj6")
+pitch = 4
+metadata/_custom_type_script = "uid://d07wr2gglwany"
+
 [sub_resource type="Resource" id="Resource_vjcbg"]
 script = ExtResource("4_5yfj6")
-length = 1
-octave = 4
+pitch = 2
 metadata/_custom_type_script = "uid://d07wr2gglwany"
 
 [sub_resource type="Resource" id="Resource_5yfj6"]
 script = ExtResource("4_5yfj6")
+pitch = 1
 metadata/_custom_type_script = "uid://d07wr2gglwany"
 
 [sub_resource type="Resource" id="Resource_s3thq"]
 script = ExtResource("4_5yfj6")
 pitch = 3
-length = 1
+metadata/_custom_type_script = "uid://d07wr2gglwany"
+
+[sub_resource type="Resource" id="Resource_o7g7e"]
+script = ExtResource("4_5yfj6")
+metadata/_custom_type_script = "uid://d07wr2gglwany"
+
+[sub_resource type="Resource" id="Resource_y8g5g"]
+script = ExtResource("4_5yfj6")
+pitch = 4
+metadata/_custom_type_script = "uid://d07wr2gglwany"
+
+[sub_resource type="Resource" id="Resource_ym2a6"]
+script = ExtResource("4_5yfj6")
+pitch = 2
+metadata/_custom_type_script = "uid://d07wr2gglwany"
+
+[sub_resource type="Resource" id="Resource_wh4ei"]
+script = ExtResource("4_5yfj6")
+pitch = 4
+metadata/_custom_type_script = "uid://d07wr2gglwany"
+
+[sub_resource type="Resource" id="Resource_7vcmd"]
+script = ExtResource("4_5yfj6")
+pitch = 4
+metadata/_custom_type_script = "uid://d07wr2gglwany"
+
+[sub_resource type="Resource" id="Resource_iebqt"]
+script = ExtResource("4_5yfj6")
+pitch = 4
+metadata/_custom_type_script = "uid://d07wr2gglwany"
+
+[sub_resource type="Resource" id="Resource_5mye1"]
+script = ExtResource("4_5yfj6")
+pitch = 3
+metadata/_custom_type_script = "uid://d07wr2gglwany"
+
+[sub_resource type="Resource" id="Resource_fevgi"]
+script = ExtResource("4_5yfj6")
+pitch = 2
+metadata/_custom_type_script = "uid://d07wr2gglwany"
+
+[sub_resource type="Resource" id="Resource_f4eqg"]
+script = ExtResource("4_5yfj6")
+pitch = 4
+metadata/_custom_type_script = "uid://d07wr2gglwany"
+
+[sub_resource type="Resource" id="Resource_7h0ro"]
+script = ExtResource("4_5yfj6")
+pitch = 4
+metadata/_custom_type_script = "uid://d07wr2gglwany"
+
+[sub_resource type="Resource" id="Resource_bcvcv"]
+script = ExtResource("4_5yfj6")
+pitch = 4
+metadata/_custom_type_script = "uid://d07wr2gglwany"
+
+[sub_resource type="Resource" id="Resource_hcxrm"]
+script = ExtResource("4_5yfj6")
+pitch = 4
+metadata/_custom_type_script = "uid://d07wr2gglwany"
+
+[sub_resource type="Resource" id="Resource_dbip0"]
+script = ExtResource("4_5yfj6")
+pitch = 3
+metadata/_custom_type_script = "uid://d07wr2gglwany"
+
+[sub_resource type="Resource" id="Resource_lntck"]
+script = ExtResource("4_5yfj6")
+pitch = 4
+metadata/_custom_type_script = "uid://d07wr2gglwany"
+
+[sub_resource type="Resource" id="Resource_t8mpw"]
+script = ExtResource("4_5yfj6")
+pitch = 2
 metadata/_custom_type_script = "uid://d07wr2gglwany"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0rbx2"]
@@ -91,24 +178,42 @@ _data = {
 [node name="Node2D" type="Node2D" unique_id=1102601017]
 
 [node name="SoundSource" parent="." unique_id=1623941428 instance=ExtResource("3_ywrey")]
-position = Vector2(1539, 306)
+position = Vector2(717, 500)
+sound_array = Array[ExtResource("4_5yfj6")]([SubResource("Resource_8v3om"), SubResource("Resource_kkvdb"), SubResource("Resource_utq5g")])
 
 [node name="SoundSource2" parent="." unique_id=896632736 instance=ExtResource("3_ywrey")]
-position = Vector2(1546, 768)
+position = Vector2(2618, 431)
 sound_array = Array[ExtResource("4_5yfj6")]([SubResource("Resource_vjcbg"), SubResource("Resource_5yfj6"), SubResource("Resource_s3thq")])
-init_delay = 2.5
+init_delay = 3.0
 
 [node name="SoundSource3" parent="." unique_id=1512417417 instance=ExtResource("3_ywrey")]
-position = Vector2(294, 1141)
-sound_array = Array[ExtResource("4_5yfj6")]([SubResource("Resource_vjcbg"), SubResource("Resource_5yfj6"), SubResource("Resource_s3thq")])
+position = Vector2(-1288, 547)
+sound_array = Array[ExtResource("4_5yfj6")]([SubResource("Resource_o7g7e"), SubResource("Resource_y8g5g"), SubResource("Resource_ym2a6")])
+init_delay = 2.5
+
+[node name="SoundSource4" parent="." unique_id=1236112763 instance=ExtResource("3_ywrey")]
+position = Vector2(1246, 3853)
+sound_array = Array[ExtResource("4_5yfj6")]([SubResource("Resource_wh4ei"), SubResource("Resource_7vcmd"), SubResource("Resource_iebqt"), SubResource("Resource_5mye1")])
+
+[node name="SoundSource6" parent="." unique_id=1496472082 instance=ExtResource("3_ywrey")]
+position = Vector2(291, 3879)
+sound_array = Array[ExtResource("4_5yfj6")]([SubResource("Resource_fevgi"), SubResource("Resource_f4eqg"), SubResource("Resource_7h0ro"), SubResource("Resource_bcvcv")])
+init_delay = 2.5
+
+[node name="SoundSource5" parent="." unique_id=1139068881 instance=ExtResource("3_ywrey")]
+position = Vector2(1224, 2129)
+sound_array = Array[ExtResource("4_5yfj6")]([SubResource("Resource_hcxrm"), SubResource("Resource_dbip0")])
+
+[node name="SoundSource7" parent="." unique_id=597136059 instance=ExtResource("3_ywrey")]
+position = Vector2(269, 2155)
+sound_array = Array[ExtResource("4_5yfj6")]([SubResource("Resource_lntck"), SubResource("Resource_t8mpw")])
 init_delay = 2.5
 
 [node name="Player" parent="." unique_id=714402239 instance=ExtResource("1_ltfq3")]
-position = Vector2(771, 465)
-
-[node name="Listener" type="Area2D" parent="." unique_id=128204281]
+position = Vector2(709, -288)
 
 [node name="Door" type="Node2D" parent="." unique_id=910356654]
+position = Vector2(83, -556)
 script = ExtResource("4_vjcbg")
 
 [node name="Wall" type="AnimatableBody2D" parent="Door" unique_id=788862664]
@@ -133,7 +238,9 @@ shape = SubResource("RectangleShape2D_0rbx2")
 
 [node name="Listener" type="Area2D" parent="Door" unique_id=231746151]
 unique_name_in_owner = true
-position = Vector2(-2, 119)
+position = Vector2(643, -61)
+collision_layer = 0
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door/Listener" unique_id=1388387412]
 shape = SubResource("CircleShape2D_0rbx2")
@@ -145,3 +252,9 @@ texture = ExtResource("4_ywrey")
 [node name="WallAnimator" type="AnimationPlayer" parent="Door" unique_id=1484052583]
 libraries/ = SubResource("AnimationLibrary_ywrey")
 autoplay = &"RESET"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1272750389]
+process_mode = 4
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=791039472]
+polygon = PackedVector2Array(-490, -829, 1951, -1135, 2257, 728, 2096, 1790, -701, 1795, -684, -45, -579, -879, -329, -779, -538, -23, -584, 1250, -323, 1528, 795, 1545, 2012, 1289, 2201, 811, 2096, 261, 1768, -940, -345, -818)
