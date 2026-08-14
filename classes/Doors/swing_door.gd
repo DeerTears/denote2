@@ -2,7 +2,6 @@ extends Node3D
 
 @export var start_closed: bool = true
 @export var is_locked: bool = false
-# TODO: implement for running into doors puzzles
 @export var is_autoclosing: bool = false
 @export_range(0.1, 30.0, 0.1) var autoclose_delay: float = 1.0
 #@export var swing_right: bool = false # TODO: make right_facing set of swing door animations
