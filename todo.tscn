@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://b74fn2u4j7vmx"]
+
+[node name="Control" type="Control" unique_id=136786929]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="RichTextLabel" parent="." unique_id=2017958036]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center][b]TODO:[/b]
+[left]
+1. Move all resetting memory functionality into a \"reset\" function so that handling this stuff is cleaner and less all-over-the-place
+2. Move all playback and recording stuff into NODES that handle the functionality with their process loops.
+
+NOT with timers, and NOT nestled within the player! Make a dedicated system that handles one specific thing that talks better with the player!
+
+3. Consider...replacing Sound with an extendable base of Sound and then have multiple inheriting Sound types?
+	- SoundNote
+	- SoundSilence
+	- SoundSample ?
+
+Bugs:
+
+1. The memory doesn't fully reset playback, but hopefully clearing up the reset functionality will make that more self-evident?
+
+2. That's it for now <3"
