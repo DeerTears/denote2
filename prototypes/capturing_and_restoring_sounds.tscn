@@ -177,6 +177,9 @@ _data = {
 
 [node name="Node2D" type="Node2D" unique_id=1102601017]
 
+[node name="Player" parent="." unique_id=714402239 instance=ExtResource("1_ltfq3")]
+position = Vector2(779, -200)
+
 [node name="SoundSource" parent="." unique_id=1623941428 instance=ExtResource("3_ywrey")]
 position = Vector2(717, 500)
 sound_array = Array[ExtResource("4_5yfj6")]([SubResource("Resource_8v3om"), SubResource("Resource_kkvdb"), SubResource("Resource_utq5g")])
@@ -208,9 +211,6 @@ sound_array = Array[ExtResource("4_5yfj6")]([SubResource("Resource_hcxrm"), SubR
 position = Vector2(269, 2155)
 sound_array = Array[ExtResource("4_5yfj6")]([SubResource("Resource_lntck"), SubResource("Resource_t8mpw")])
 init_delay = 2.5
-
-[node name="Player" parent="." unique_id=714402239 instance=ExtResource("1_ltfq3")]
-position = Vector2(709, -288)
 
 [node name="Door" type="Node2D" parent="." unique_id=910356654]
 position = Vector2(83, -556)

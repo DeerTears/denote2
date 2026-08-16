@@ -1,38 +1,90 @@
 [gd_scene format=3 uid="uid://cvq8d28r0wcc7"]
 
 [ext_resource type="Script" uid="uid://ce8675gmnsjnw" path="res://prototypes/proto_player.gd" id="1_h88if"]
-[ext_resource type="Script" uid="uid://sofdka7btqgf" path="res://prototypes/sound_source.gd" id="2_6n8b3"]
 [ext_resource type="Texture2D" uid="uid://cpueloqm4x7fl" path="res://icon.svg" id="2_al2y4"]
+[ext_resource type="Script" uid="uid://d3ax3v5ob8yvw" path="res://prototypes/player_sound_source.gd" id="2_g3x8x"]
 [ext_resource type="Texture2D" uid="uid://dr3f2os302lud" path="res://prototypes/radar.svg" id="3_kbfbm"]
-[ext_resource type="Script" uid="uid://d07wr2gglwany" path="res://classes/Data/sound.gd" id="3_lfq23"]
 [ext_resource type="Texture2D" uid="uid://ca00x54hhooa" path="res://prototypes/circle.svg" id="4_cdap5"]
-[ext_resource type="Texture2D" uid="uid://cf11yel58l35g" path="res://classes/Button/button_icon.png" id="5_qkaj0"]
 [ext_resource type="Texture2D" uid="uid://cc2gr21tqe3wt" path="res://PlayerCharacter/HUD/crosshair.png" id="6_1apjf"]
-
-[sub_resource type="Resource" id="Resource_vjcbg"]
-script = ExtResource("3_lfq23")
-length = 1
-octave = 4
-metadata/_custom_type_script = "uid://d07wr2gglwany"
-
-[sub_resource type="Resource" id="Resource_s3thq"]
-script = ExtResource("3_lfq23")
-pitch = 2
-octave = 4
-metadata/_custom_type_script = "uid://d07wr2gglwany"
-
-[sub_resource type="Resource" id="Resource_5yfj6"]
-script = ExtResource("3_lfq23")
-pitch = 2
-octave = 4
-metadata/_custom_type_script = "uid://d07wr2gglwany"
-
-[sub_resource type="Resource" id="Resource_8v3om"]
-script = ExtResource("3_lfq23")
-metadata/_custom_type_script = "uid://d07wr2gglwany"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xiff7"]
 radius = 356.0
+
+[sub_resource type="Animation" id="Animation_ywrey"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Radar:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Radar:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1.353256, 1.353256, 1.353256, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_vjcbg"]
+resource_name = "radar"
+length = 1.25
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Radar:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.9, 1.2333333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1.25, 1.25), Vector2(1.5, 1.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Radar:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.9, 1.2),
+"transitions": PackedFloat32Array(0.18301071, 0.32987693, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.5019608), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"emit_next_sound"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1apjf"]
+_data = {
+&"RESET": SubResource("Animation_ywrey"),
+&"radar": SubResource("Animation_vjcbg")
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0rbx2"]
 size = Vector2(130, 132)
@@ -128,28 +180,27 @@ _data = {
 [node name="Player" type="CharacterBody2D" unique_id=714402239]
 script = ExtResource("1_h88if")
 
-[node name="SoundSource" type="Area2D" parent="." unique_id=1623941428]
+[node name="PlayerSoundSource" type="Area2D" parent="." unique_id=1623941428]
+unique_name_in_owner = true
 collision_layer = 4
 collision_mask = 0
-script = ExtResource("2_6n8b3")
-sound_array = Array[ExtResource("3_lfq23")]([SubResource("Resource_vjcbg"), SubResource("Resource_s3thq"), SubResource("Resource_5yfj6"), SubResource("Resource_8v3om")])
+script = ExtResource("2_g3x8x")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SoundSource" unique_id=1559827167]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerSoundSource" unique_id=1559827167]
 shape = SubResource("CircleShape2D_xiff7")
 
-[node name="Radar" type="Sprite2D" parent="SoundSource" unique_id=2034029969]
+[node name="Radar" type="Sprite2D" parent="PlayerSoundSource" unique_id=2034029969]
 modulate = Color(1.353256, 1.353256, 1.353256, 0)
 scale = Vector2(1e-05, 1e-05)
 texture = ExtResource("4_cdap5")
 
-[node name="ButtonIcon" type="Sprite2D" parent="SoundSource" unique_id=950671186]
-scale = Vector2(0.30405405, 0.30405405)
-texture = ExtResource("5_qkaj0")
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="SoundSource" unique_id=322043458]
-max_distance = 1000.0
-panning_strength = 4.0
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="PlayerSoundSource" unique_id=1797128060]
+volume_db = -1.0
 bus = &"Playable Instruments"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerSoundSource" unique_id=2096858209]
+libraries/ = SubResource("AnimationLibrary_1apjf")
+autoplay = &"radar"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1579181713]
 zoom = Vector2(0.5, 0.5)
@@ -269,3 +320,20 @@ offset_bottom = 38.0
 texture = ExtResource("3_kbfbm")
 expand_mode = 3
 stretch_mode = 4
+
+[node name="Debug" type="Panel" parent="CanvasLayer" unique_id=187370297]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -317.0
+offset_bottom = 192.0
+grow_horizontal = 0
+
+[node name="Label" type="Label" parent="CanvasLayer/Debug" unique_id=1785560509]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 2

@@ -9,7 +9,6 @@ signal sound_emitted(current_sound: Sound)
 ## Sequence of sounds to play as a source.
 @export var sound_array: Array[Sound] = []
 @export var init_delay: float = 2.0
-@export var is_from_player: bool = false
 
 var iterator: int = 0
 
