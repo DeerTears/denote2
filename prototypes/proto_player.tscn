@@ -10,35 +10,8 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_xiff7"]
 radius = 356.0
 
-[sub_resource type="Animation" id="Animation_ywrey"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Radar:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Radar:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1.353256, 1.353256, 1.353256, 0)]
-}
-
 [sub_resource type="Animation" id="Animation_vjcbg"]
-resource_name = "radar"
+resource_name = "playing"
 length = 1.25
 loop_mode = 1
 tracks/0/type = "value"
@@ -80,10 +53,38 @@ tracks/2/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_ywrey"]
+resource_name = "stopped"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Radar:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Radar:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1.353256, 1.353256, 1.353256, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1apjf"]
 _data = {
-&"RESET": SubResource("Animation_ywrey"),
-&"radar": SubResource("Animation_vjcbg")
+&"playing": SubResource("Animation_vjcbg"),
+&"stopped": SubResource("Animation_ywrey")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0rbx2"]
@@ -128,23 +129,8 @@ _data = {
 &"move": SubResource("Animation_1apjf")
 }
 
-[sub_resource type="Animation" id="Animation_s3thq"]
-resource_name = "idle"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Recording:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
 [sub_resource type="Animation" id="Animation_5yfj6"]
-resource_name = "recording"
+resource_name = "playing"
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -171,10 +157,25 @@ tracks/1/keys = {
 "values": [true, false]
 }
 
+[sub_resource type="Animation" id="Animation_s3thq"]
+resource_name = "stopped"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Recording:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8v3om"]
 _data = {
-&"idle": SubResource("Animation_s3thq"),
-&"recording": SubResource("Animation_5yfj6")
+&"playing": SubResource("Animation_5yfj6"),
+&"stopped": SubResource("Animation_s3thq")
 }
 
 [node name="Player" type="CharacterBody2D" unique_id=714402239]
@@ -200,7 +201,7 @@ bus = &"Playable Instruments"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerSoundSource" unique_id=2096858209]
 libraries/ = SubResource("AnimationLibrary_1apjf")
-autoplay = &"radar"
+autoplay = &"stopped"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1579181713]
 zoom = Vector2(0.5, 0.5)
@@ -228,7 +229,7 @@ libraries/ = SubResource("AnimationLibrary_g3x8x")
 [node name="RecordingAnimator" type="AnimationPlayer" parent="CanvasLayer" unique_id=1851619389]
 unique_name_in_owner = true
 libraries/ = SubResource("AnimationLibrary_8v3om")
-autoplay = &"idle"
+autoplay = &"stopped"
 
 [node name="Playhead" type="Control" parent="CanvasLayer" unique_id=479194467]
 layout_mode = 3
@@ -270,13 +271,6 @@ theme_override_constants/separation = 8
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer/UI" unique_id=145894224]
 layout_mode = 2
 
-[node name="MemoryFull" type="ProgressBar" parent="CanvasLayer/MarginContainer/UI/HBoxContainer" unique_id=29955657]
-unique_name_in_owner = true
-visible = false
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 1
-
 [node name="MemoryReset" type="Button" parent="CanvasLayer/MarginContainer/UI/HBoxContainer" unique_id=858834293]
 unique_name_in_owner = true
 layout_mode = 2
@@ -295,7 +289,6 @@ size_flags_horizontal = 3
 theme_override_constants/separation = 4
 
 [node name="Recording" type="Control" parent="CanvasLayer" unique_id=1081675600]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = 24.0
@@ -313,7 +306,6 @@ theme_override_font_sizes/font_size = 24
 text = "REC"
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Recording" unique_id=2117106045]
-visible = false
 layout_mode = 0
 offset_right = 38.0
 offset_bottom = 38.0
