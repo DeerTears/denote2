@@ -18,10 +18,11 @@ grow_vertical = 2
 bbcode_enabled = true
 text = "[center][b]TODO:[/b]
 [left]
-1. Move all resetting memory functionality into a \"reset\" function so that handling this stuff is cleaner and less all-over-the-place
-2. Move all playback and recording stuff into NODES that handle the functionality with their process loops.
+1. Make the audio memory 1:1 with the player's memory
 
-NOT with timers, and NOT nestled within the player! Make a dedicated system that handles one specific thing that talks better with the player!
+Remember, NOT with timers, and NOT nestled within the player script! Make a dedicated system that handles one specific thing that talks better with the player! Or just simplify until it fits in the player script, that works too I suppose...
+
+2. Make the audio player handle having an empty memory.
 
 3. Consider...replacing Sound with an extendable base of Sound and then have multiple inheriting Sound types?
 	- SoundNote
@@ -30,6 +31,4 @@ NOT with timers, and NOT nestled within the player! Make a dedicated system that
 
 Bugs:
 
-1. The memory doesn't fully reset playback, but hopefully clearing up the reset functionality will make that more self-evident?
-
-2. That's it for now <3"
+1. None, that's it for now <3"
