@@ -29,13 +29,17 @@ func change_state_to(new_state: STATE) -> void:
 		STATE.IDLE:
 			current_state = STATE.IDLE
 			%RecordingAnimator.play("stopped")
+			%PlayingAnimator.play("stopped")
 			%PlayerSoundSource/AnimationPlayer.play("stopped")
 		STATE.RECORDING:
 			current_state = STATE.RECORDING
 			%RecordingAnimator.play("playing")
+			%PlayingAnimator.play("stopped")
+			%PlayerSoundSource/AnimationPlayer.play("stopped")
 		STATE.PLAYING:
 			current_state = STATE.PLAYING
 			%RecordingAnimator.play("stopped")
+			%PlayingAnimator.play("playing")
 			%PlayerSoundSource.iterator = 0 # set the sequence to play at the start
 			%PlayerSoundSource/AnimationPlayer.play("playing") # start playing the sequence via an animation player loop
 

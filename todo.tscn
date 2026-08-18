@@ -18,13 +18,12 @@ grow_vertical = 2
 bbcode_enabled = true
 text = "[center][b]TODO:[/b]
 [left]
-1. Make the audio memory 1:1 with the player's memory
 
-Remember, NOT with timers, and NOT nestled within the player script! Make a dedicated system that handles one specific thing that talks better with the player! Or just simplify until it fits in the player script, that works too I suppose...
+1. When the player enters the radius and hits record, grab the last emitted note from that sound source.
 
-2. Make the audio player handle having an empty memory.
+[center][b]SCOPE CREEP:[/b][/center]
 
-3. Consider...replacing Sound with an extendable base of Sound and then have multiple inheriting Sound types?
+2. Consider...replacing Sound with an extendable base of Sound and then have multiple inheriting Sound types?
 	- SoundNote
 	- SoundSilence
 	- SoundSample ?
