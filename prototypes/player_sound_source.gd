@@ -7,7 +7,7 @@ extends Area2D
 signal sound_emitted(current_sound: Sound)
 
 ## Sequence of sounds to play back to in-game listeners.
-var sound_array: Array = [Sound.new(Data.NOTES.HIGHEST, Data.LENGTHS.SHORT, 3, Data.VOLUMES.SILENT)]
+var sound_array: Array = [Sound.new(Data.PITCHES.HIGHEST, Data.LENGTHS.SHORT, 3, Data.VOLUMES.SILENT)]
 
 var iterator: int = 0
 

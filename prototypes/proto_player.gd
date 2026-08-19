@@ -71,6 +71,8 @@ func _unhandled_input(event: InputEvent) -> void:
 					change_state_to(STATE.PLAYING)
 				STATE.PLAYING:
 					change_state_to(STATE.IDLE)
+		if event.is_action("proto_reset_memory"):
+			reset_memory()
 
 #region Entering/Leaving Other Sound Sources
 func on_recorder_area_entered(area: Area2D) -> void:
@@ -90,7 +92,7 @@ func on_recorder_area_exited(area: Area2D) -> void:
 func on_sound_recieved(sound_data: Sound) -> void:
 	if current_state == STATE.RECORDING:
 		var distance = global_position.distance_to(sound_data.original_location) / 480.0
-		print_debug("recieved: pitch %s | length %s | octave %s | distance %s !" % [Data.NOTES.keys()[sound_data.pitch], Data.LENGTHS.keys()[sound_data.length], sound_data.octave, distance])
+		print_debug("recieved: pitch %s | length %s | octave %s | distance %s !" % [Data.PITCHES.keys()[sound_data.pitch], Data.LENGTHS.keys()[sound_data.length], sound_data.octave, distance])
 		add_note_to_memory(sound_data)
 
 func add_note_to_memory(sound_data: Sound) -> void:
@@ -99,14 +101,14 @@ func add_note_to_memory(sound_data: Sound) -> void:
 	var new_counter: ColorRect = load("res://prototypes/proto_note_%s.tscn" % ["long" if is_long else "short"]).instantiate()
 	new_counter.color = Data.get_note_color(sound_data.pitch)
 	memory_container_node.add_child(new_counter)
-	%PlayerSoundSource.sound_array = [Sound.new(Data.NOTES.HIGHEST, Data.LENGTHS.SHORT, 3, Data.VOLUMES.SILENT)] if memory.is_empty() else memory
+	%PlayerSoundSource.sound_array = [Sound.new(Data.PITCHES.HIGHEST, Data.LENGTHS.SHORT, 3, Data.VOLUMES.SILENT)] if memory.is_empty() else memory
 
 func reset_memory() -> void:
 	change_state_to(STATE.IDLE)
 	# BUG: gets priority to avoid out of bounds array race condition OOF
 	# BUG: this is maybe where the array gets confused?
 	memory.clear()
-	%PlayerSoundSource.sound_array = [Sound.new(Data.NOTES.HIGHEST, Data.LENGTHS.SHORT, 3, Data.VOLUMES.SILENT)]
+	%PlayerSoundSource.sound_array = [Sound.new(Data.PITCHES.HIGHEST, Data.LENGTHS.SHORT, 3, Data.VOLUMES.SILENT)]
 	# Handling UI
 	for child in memory_container_node.get_children():
 		child.queue_free()
@@ -136,6 +138,6 @@ func debug_text_display() -> void:
 	var new_string: String = ""
 	new_string += "%s\n" % [STATE.keys()[current_state]]
 	for unit in $PlayerSoundSource.sound_array:
-		new_string += "%s\n" % [Data.NOTES.keys()[unit.pitch]]
+		new_string += "%s\n" % [Data.PITCHES.keys()[unit.pitch]]
 	$CanvasLayer/Debug/Label.text = new_string
 #endregion

@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://d3ax3v5ob8yvw" path="res://prototypes/player_sound_source.gd" id="2_g3x8x"]
 [ext_resource type="Texture2D" uid="uid://dr3f2os302lud" path="res://prototypes/radar.svg" id="3_kbfbm"]
 [ext_resource type="Texture2D" uid="uid://ca00x54hhooa" path="res://prototypes/circle.svg" id="4_cdap5"]
+[ext_resource type="Script" uid="uid://byk7hibck16gj" path="res://prototypes/cassette_buttons.gd" id="5_g3x8x"]
 [ext_resource type="Texture2D" uid="uid://ccrq73jbaslfx" path="res://prototypes/triangle.svg" id="7_g3x8x"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xiff7"]
@@ -225,7 +226,7 @@ scale = Vector2(1e-05, 1e-05)
 texture = ExtResource("4_cdap5")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="PlayerSoundSource" unique_id=1797128060]
-volume_db = -1.0
+volume_db = -2.5
 bus = &"Playable Instruments"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerSoundSource" unique_id=2096858209]
@@ -279,14 +280,40 @@ theme_override_constants/margin_bottom = 16
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer/UI" unique_id=145894224]
+[node name="CassetteButtons" type="HBoxContainer" parent="CanvasLayer/MarginContainer/UI" unique_id=145894224]
 layout_mode = 2
+script = ExtResource("5_g3x8x")
 
-[node name="MemoryReset" type="Button" parent="CanvasLayer/MarginContainer/UI/HBoxContainer" unique_id=858834293]
+[node name="Left" type="Button" parent="CanvasLayer/MarginContainer/UI/CassetteButtons" unique_id=1063760595]
+layout_mode = 2
+focus_mode = 0
+text = "<<"
+
+[node name="RecordButton" type="Button" parent="CanvasLayer/MarginContainer/UI/CassetteButtons" unique_id=1353638677]
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 32
+toggle_mode = true
+text = "Record"
+
+[node name="PlayButton" type="Button" parent="CanvasLayer/MarginContainer/UI/CassetteButtons" unique_id=1840862042]
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 32
+toggle_mode = true
+text = "Play"
+
+[node name="MemoryReset" type="Button" parent="CanvasLayer/MarginContainer/UI/CassetteButtons" unique_id=858834293]
 unique_name_in_owner = true
 layout_mode = 2
 focus_mode = 0
+theme_override_font_sizes/font_size = 32
 text = "Reset"
+
+[node name="Right" type="Button" parent="CanvasLayer/MarginContainer/UI/CassetteButtons" unique_id=1343356266]
+layout_mode = 2
+focus_mode = 0
+text = ">>"
 
 [node name="MemoryContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer/UI" unique_id=1837266181]
 unique_name_in_owner = true
@@ -363,3 +390,44 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 horizontal_alignment = 2
+
+[node name="ModeArrows" type="Control" parent="CanvasLayer" unique_id=1027982278]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ModeArrow" type="TextureRect" parent="CanvasLayer/ModeArrows" unique_id=78834239]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 113.0
+offset_top = 445.0
+offset_right = 149.36362
+offset_bottom = 469.90906
+rotation = 1.5707964
+texture = ExtResource("7_g3x8x")
+expand_mode = 1
+
+[node name="Target1" type="Control" parent="CanvasLayer/ModeArrows" unique_id=1202502337]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = 96.0
+offset_top = 457.0
+offset_right = 136.0
+offset_bottom = 497.0
+
+[node name="Target2" type="Control" parent="CanvasLayer/ModeArrows" unique_id=2042165960]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = 195.0
+offset_top = 456.0
+offset_right = 235.0
+offset_bottom = 496.0
+
+[node name="Target3" type="Control" parent="CanvasLayer/ModeArrows" unique_id=569011501]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_left = 282.0
+offset_top = 458.0
+offset_right = 322.0
+offset_bottom = 498.0

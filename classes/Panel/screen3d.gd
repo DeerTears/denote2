@@ -1,13 +1,13 @@
 class_name Screen3D
 extends Area3D
 
-enum NOTES {HIGHEST, HIGH, MEDIUM, LOW, LOWEST}
-@export var answer: Array[NOTES] = []
+enum PITCHES {HIGHEST, HIGH, MEDIUM, LOW, LOWEST}
+@export var answer: Array[PITCHES] = []
 
 @onready var button_children: Array = [$KeyButton1, $KeyButton2, $KeyButton3, $KeyButton4, $KeyButton5]
 @onready var submit_button = $SubmitButton
 
-var memory: Array[NOTES]
+var memory: Array[PITCHES]
 
 func _ready() -> void:
 	for button_node in button_children:

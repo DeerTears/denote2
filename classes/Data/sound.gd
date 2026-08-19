@@ -4,7 +4,7 @@
 class_name Sound
 extends Resource
 
-@export var pitch: Data.NOTES = Data.NOTES.HIGHEST
+@export var pitch: Data.PITCHES = Data.PITCHES.HIGHEST
 @export var length: Data.LENGTHS = Data.LENGTHS.SHORT
 @export var octave: int = 3
 @export var volume: Data.VOLUMES = Data.VOLUMES.REGULAR
@@ -12,7 +12,10 @@ extends Resource
 var recorded_time: float = 0.0
 var original_location: Vector2 = Vector2.ZERO
 
-func _init(s_pitch: Data.NOTES = Data.NOTES.HIGHEST, s_length: Data.LENGTHS = Data.LENGTHS.SHORT, s_octave: int = 3, s_volume: Data.VOLUMES = Data.VOLUMES.REGULAR) -> void:
+static func is_sound() -> bool:
+	return true
+
+func _init(s_pitch: Data.PITCHES = Data.PITCHES.HIGHEST, s_length: Data.LENGTHS = Data.LENGTHS.SHORT, s_octave: int = 3, s_volume: Data.VOLUMES = Data.VOLUMES.REGULAR) -> void:
 	pitch = s_pitch
 	length = s_length
 	octave = s_octave

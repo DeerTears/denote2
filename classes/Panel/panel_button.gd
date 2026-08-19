@@ -3,9 +3,9 @@ class_name KeyButton
 
 const SCALE_FACTOR = 1.1
 
-enum NOTES {HIGHEST, HIGH, MEDIUM, LOW, LOWEST}
+enum PITCHES {HIGHEST, HIGH, MEDIUM, LOW, LOWEST}
 
-@export var note: NOTES = NOTES.MEDIUM
+@export var note: PITCHES = PITCHES.MEDIUM
 
 @onready var audio = $AudioStreamPlayer
 @onready var mesh = $MeshInstance3D
